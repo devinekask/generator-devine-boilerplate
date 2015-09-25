@@ -1,0 +1,5 @@
+/node_modules
+/js
+/css<% if (node) { %>
+/public/js
+/public/css<% } %>

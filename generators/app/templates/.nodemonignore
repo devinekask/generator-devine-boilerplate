@@ -1,0 +1,15 @@
+/_hbs/*
+/_helpers/*
+/_js/*
+/_scss/*
+/node_modules/*
+/db/*
+/public/*
+.babelrc
+.editorconfig
+.eslintrc
+.gitignore
+_config.js
+gulpfile.js
+package.json
+webpack.config.js
