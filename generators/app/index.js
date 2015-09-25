@@ -142,7 +142,6 @@ module.exports = yeoman.generators.Base.extend({
 
   install: function(){
 
-    /*
     if(this.git){
       spawn('git', ['init'], { stdio: 'inherit' });
       spawn('git', ['add', '.'], { stdio: 'inherit' });
@@ -151,7 +150,6 @@ module.exports = yeoman.generators.Base.extend({
 
     spawn('npm', ['install'], { stdio: 'inherit' });
     spawn('npm', ['run', 'development'], { stdio: 'inherit' });
-    */
 
   }
 
