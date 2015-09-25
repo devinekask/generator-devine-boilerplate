@@ -1,14 +1,14 @@
 {
   "name": "generator-devine-project",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Yeoman generator",
   "license": "MIT",
   "main": "app/index.js",
-  "repository": "duivvv/generator-devine-project",
+  "repository": "devinehowest/generator-devine-project",
   "author": {
     "name": "Geoffrey Dhuyvetters",
     "email": "",
-    "url": "https://github.com/duivvv"
+    "url": "https://github.com/devinehowest"
   },
   "scripts": {
     "test": "mocha"
