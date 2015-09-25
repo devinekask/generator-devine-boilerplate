@@ -23,15 +23,13 @@
     "gulp-eslint": "^1.0.0",
     "handlebars": "^3.0.3",
     "handlebars-loader": "^1.1.1",
-    "node-sass": "^3.3.3",<% if (node) { %>
-    "nodemon": "^1.7.0",<% } %>
+    "node-sass": "^3.3.3",
     "postcss-loader": "^0.5.1",
     "sass-loader": "^2.0.1",
     "style-loader": "^0.12.3",
     "webpack": "^1.11.0"
   },<% if (node) { %>
   "dependencies": {
-    "forever": "^0.15.1",
     "hapi": "^10.0.1",
     "inert": "^3.0.1",
     "lodash": "^3.10.1"
