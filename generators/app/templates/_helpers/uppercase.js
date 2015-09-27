@@ -1,5 +1,5 @@
 'use strict';
 
-module.exports = function(){
-  return this.toUpperCase();
+export default ctx => {
+  return ctx.toUpperCase();
 };
