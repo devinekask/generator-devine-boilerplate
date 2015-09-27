@@ -6,12 +6,12 @@
 // import 'babel-core/polyfill';
 // or import specific polyfills from core-js
 
-import helloworld_tpl from '../_hbs/helloworld';
+import helloworldTpl from '../_hbs/helloworld';
 
 (() => {
 
   const init = () => {
-    console.log(helloworld_tpl({name: '<%= author %>'}));
+    console.log(helloworldTpl({name: '<%= author %>'}));
   };
 
   init();
