@@ -1,7 +1,11 @@
 'use strict';
 
+require('dotenv').load();
+
 let Hapi = require('hapi');
 let path = require('path');
+
+let port = process.env.PORT || 3000;
 
 let server = new Hapi.Server({
   connections: {
@@ -14,7 +18,7 @@ let server = new Hapi.Server({
 });
 
 server.connection({
-  port: 3000
+  port: port
 });
 
 server.register(require('inert'), function(err){

@@ -109,11 +109,15 @@ module.exports = yeoman.generators.Base.extend({
         'README.md', 'LICENSE'
       ];
 
+
       if(this.node){
-        files.push('.nodemonignore')
+        files.push('.nodemonignore');
+        files.push('Procfile');
+        files.push('.env');
       }
 
       for(var i = 0; i < files.length; i++){
+        console.log(files[i]);
         this._copy(files[i]);
       }
 
@@ -122,6 +126,8 @@ module.exports = yeoman.generators.Base.extend({
         this.destinationPath('.gitignore'),
         this
       );
+
+
 
     }
 
