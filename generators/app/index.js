@@ -81,8 +81,9 @@ module.exports = yeoman.generators.Base.extend({
       if(!this.node){
         files.push('index.html');
       }else{
-        files.push('server.js');
-        files.push('routes/index.js', 'routes/static.js');
+        files.push('server.js',
+          'routes/index.js', 'routes/static.js', 'routes/_api.js',
+          'modules/exportroutes.js');
       }
 
       for(var i = 0; i < files.length; i++){
@@ -111,9 +112,7 @@ module.exports = yeoman.generators.Base.extend({
 
 
       if(this.node){
-        files.push('.nodemonignore');
-        files.push('Procfile');
-        files.push('.env');
+        files.push('.nodemonignore', 'Procfile', '.env');
       }
 
       for(var i = 0; i < files.length; i++){
