@@ -7,6 +7,7 @@
 // or import specific polyfills from core-js
 
 import helloworldTpl from '../_hbs/helloworld';
+// import {$} from './helpers/util';
 
 (() => {
 

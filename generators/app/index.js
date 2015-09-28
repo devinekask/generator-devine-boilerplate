@@ -69,7 +69,7 @@ module.exports = yeoman.generators.Base.extend({
       var files = [
         '_hbs/helloworld.hbs',
         '_helpers/uppercase.js',
-        '_js/script.js',
+        '_js/script.js', '_js/helpers/util.js',
         '_scss/style.scss', '_scss/_reset.scss', '_scss/_mixins.scss',
       ];
 

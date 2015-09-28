@@ -16,6 +16,7 @@
     "babel-eslint": "^4.0.10",
     "babel-loader": "^5.3.2",
     "css-loader": "^0.16.0",
+    "es6-promise": "^3.0.2",
     "eslint": "^1.1.0",
     "eslint-loader": "^1.0.0",
     "extract-text-webpack-plugin": "^0.8.2",
@@ -25,6 +26,7 @@
     "handlebars": "^3.0.3",
     "handlebars-loader": "^1.1.1",
     "node-sass": "^3.3.3",
+    "array.from": "^0.2.0",
     "postcss-loader": "^0.5.1",
     "sass-loader": "^2.0.1",
     "style-loader": "^0.12.3",<% if (node) { %>
