@@ -2,7 +2,7 @@
 
 import 'array.from';
 
-export const stringToHTML = (strings, ...values) => {
+export const html = (strings, ...values) => {
 
   let str = '';
 
@@ -15,11 +15,15 @@ export const stringToHTML = (strings, ...values) => {
     str = strings;
   }
 
-  let doc = new DOMParser().parseFromString(
-    str.trim(), 'text/html');
+  let doc = new DOMParser().parseFromString(str.trim(), 'text/html');
 
   return doc.body.firstChild;
 
+};
+
+export const prepend = ($parent, $element) => {
+  let $first = $parent.children[0];
+  $parent.insertBefore($element, $first);
 };
 
 export const $ = selector => {
