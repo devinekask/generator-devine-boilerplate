@@ -29,6 +29,7 @@ module.exports = yeoman.generators.Base.extend({
         type: 'input',
         name: 'author',
         message: 'Your name',
+        default: require('git-user-name')() || ''
       },{
         type: 'input',
         name: 'version',
