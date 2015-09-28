@@ -9,12 +9,8 @@
 import helloworldTpl from '../_hbs/helloworld';
 // import {$} from './helpers/util';
 
-(() => {
+const init = () => {
+  console.log(helloworldTpl({name: '<%= author %>'}));
+};
 
-  const init = () => {
-    console.log(helloworldTpl({name: '<%= author %>'}));
-  };
-
-  init();
-
-})();
+init();
