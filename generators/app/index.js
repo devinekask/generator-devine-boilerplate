@@ -31,11 +31,6 @@ module.exports = yeoman.generators.Base.extend({
         message: 'Your name',
         default: require('git-user-name')() || ''
       },{
-        type: 'input',
-        name: 'version',
-        message: 'Version',
-        default: '0.1.0'
-      },{
         type: 'confirm',
         name: 'node',
         message: 'Do you need a Node server? (Yes)',
