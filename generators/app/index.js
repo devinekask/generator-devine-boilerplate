@@ -119,7 +119,6 @@ module.exports = yeoman.generators.Base.extend({
       }
 
       for(var i = 0; i < files.length; i++){
-        console.log(files[i]);
         this._copy(files[i]);
       }
 
@@ -139,11 +138,17 @@ module.exports = yeoman.generators.Base.extend({
 
     if(this.git){
       spawn('git', ['init'], { stdio: 'inherit' });
+    }
+
+    spawn('npm', ['install'], { stdio: 'inherit' });
+
+    spawn('webpack', { stdio: 'inherit' });
+
+    if(this.git){
       spawn('git', ['add', '.'], { stdio: 'inherit' });
       spawn('git', ['commit', '-m', '"initial commit"'], { stdio: 'inherit' });
     }
 
-    spawn('npm', ['install'], { stdio: 'inherit' });
     spawn('npm', ['run', 'development'], { stdio: 'inherit' });
 
   }
