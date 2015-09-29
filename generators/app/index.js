@@ -8,13 +8,19 @@ var path = require('path');
 var fs = require('fs');
 
 var spawn = require('child_process').spawnSync;
+var exec = require('child_process').execSync;
 
 module.exports = yeoman.generators.Base.extend({
-
 
   prompting: function(){
 
     var done = this.async();
+
+    var default_author = exec('npm config get init.author.name', {encoding: 'utf-8'}) || '';
+
+    if(default_author.indexOf('\n') !== -1){
+      default_author = default_author.split('\n')[0];
+    }
 
     // Have Yeoman greet the user.
     this.log(yosay(
@@ -31,7 +37,7 @@ module.exports = yeoman.generators.Base.extend({
         type: 'input',
         name: 'author',
         message: 'Your name',
-        default: require('git-user-name')() || ''
+        default: default_author
       },{
         type: 'confirm',
         name: 'node',
