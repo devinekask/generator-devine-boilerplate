@@ -29,13 +29,18 @@
     "array.from": "^0.2.0",
     "postcss-loader": "^0.5.1",
     "sass-loader": "^2.0.1",
-    "style-loader": "^0.12.3",<% if (node) { %>
-    "dotenv": "^1.2.0",<% } %>
+    "style-loader": "^0.12.3",
     "webpack": "^1.11.0"
   },<% if (node) { %>
+  "engines": {
+    "node": "4.x.x",
+    "npm": "3.x.x"
+  },
   "dependencies": {
+    "forever": "^0.15.1",
     "hapi": "^10.0.1",
     "inert": "^3.0.1",
+    "dotenv": "^1.2.0",
     "lodash": "^3.10.1"
   },<% } %>
   "license": "MIT"

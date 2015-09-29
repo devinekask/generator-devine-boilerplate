@@ -1,6 +1,6 @@
 'use strict';
 
-require('dotenv').load();
+require('dotenv').load({silent: true});
 
 let Hapi = require('hapi');
 let path = require('path');
@@ -17,28 +17,16 @@ let server = new Hapi.Server({
   }
 });
 
-server.connection({
-  port: port
-});
+server.connection({port: port});
 
-server.register(require('inert'), function(err){
-  if(err){
-    console.error(err);
-  }
-});
+const pluginHandler = (err) => {
+  if(err) console.error(err);
+};
 
-let routes = require('./routes/');
+server.register(require('inert'), pluginHandler);
+server.register(require('./routes/'), pluginHandler);
 
-for(let route in routes) {
-  server.route(routes[route]);
-}
-
-server.start(function(err){
-
-  if(err){
-    console.error(err);
-  }
-
+server.start(err => {
+  if(err) console.error(err);
   console.log('Server running at:', server.info.uri);
-
 });

@@ -5,6 +5,8 @@ var chalk = require('chalk');
 var yosay = require('yosay');
 var path = require('path');
 
+var fs = require('fs');
+
 var spawn = require('child_process').spawnSync;
 
 module.exports = yeoman.generators.Base.extend({
@@ -77,21 +79,20 @@ module.exports = yeoman.generators.Base.extend({
       if(!this.node){
         files.push('index.html');
       }else{
-        files.push('server.js',
-          'routes/index.js', 'routes/static.js', 'routes/_api.js',
-          'modules/exportroutes.js');
-      }
 
-      for(var i = 0; i < files.length; i++){
-        this._copy(files[i]);
-      }
+        files.push('server.js', 'routes/index.js', 'routes/static.js', 'routes/_api.js');
+        fs.mkdir('./modules');
 
-      if(this.node){
         this.fs.copyTpl(
           this.templatePath('index.html'),
           this.destinationPath('public/index.html'),
           this
         );
+
+      }
+
+      for(var i = 0; i < files.length; i++){
+        this._copy(files[i]);
       }
 
     },
@@ -108,7 +109,7 @@ module.exports = yeoman.generators.Base.extend({
 
 
       if(this.node){
-        files.push('.nodemonignore', 'Procfile', '.env');
+        files.push('.nodemonignore', 'Procfile', '.env', '.slugignore');
       }
 
       for(var i = 0; i < files.length; i++){
