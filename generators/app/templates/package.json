@@ -6,7 +6,7 @@
   "author": "<%= author %>",
   "scripts": {
     "development": "gulp & webpack --watch<% if (node) { %> & nodemon .<% } %>",
-    "production": "webpack -d -p<% if (node) { %> && npm start<% } %>",<% if (node) { %>
+    "production": "webpack -d -p",<% if (node) { %>
     "start": "forever --minUptime 1000 --spinSleepTime 1000 .",<% } %>
     "test": ""
   },
