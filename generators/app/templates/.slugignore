@@ -12,3 +12,4 @@ gulpfile.js
 LICENCE
 README.md
 webpack.config.js
+nodemon.json

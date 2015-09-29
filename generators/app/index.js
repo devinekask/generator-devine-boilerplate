@@ -52,12 +52,16 @@ module.exports = yeoman.generators.Base.extend({
     ];
 
     this.prompt(prompts, function(props){
+
       this.props = props;
+
       for(var prop in this.props){
         this[prop] = this.props[prop];
       }
       this.year = new Date().getFullYear();
+
       done();
+
     }.bind(this));
 
   },
@@ -76,17 +80,28 @@ module.exports = yeoman.generators.Base.extend({
 
       var files = [
         '_hbs/helloworld.hbs',
-        '_helpers/uppercase.js',
         '_js/script.js', '_js/helpers/util.js',
         '_scss/style.scss', '_scss/_reset.scss', '_scss/_mixins.scss',
       ];
 
+      fs.mkdir('./_helpers');
 
       if(!this.node){
+
         files.push('index.html');
+
+        this.fs.copyTpl(
+          this.templatePath('helpers/uppercase.js'),
+          this.destinationPath('_helpers/uppercase.js'),
+          this
+        );
+
       }else{
 
-        files.push('server.js', 'routes/index.js', 'routes/static.js', 'routes/_api.js');
+        files.push('server.js', 'routes/index.js',
+          'routes/static.js', 'routes/_api.js', 'routes/_views.js',
+          'templates/hello.hbs', 'helpers/uppercase.js');
+
         fs.mkdir('./modules');
 
         this.fs.copyTpl(
@@ -115,7 +130,7 @@ module.exports = yeoman.generators.Base.extend({
 
 
       if(this.node){
-        files.push('.nodemonignore', 'Procfile', '.env', '.slugignore');
+        files.push('nodemon.json', 'Procfile', '.env', '.slugignore');
       }
 
       for(var i = 0; i < files.length; i++){

@@ -41,11 +41,18 @@ module.exports = {
         loader: 'eslint'
       },
 
+
       {
         //handlebars
         test: /\.(hbs|handlebars)$/,
         exclude: /node_modules/,
-        loader: 'handlebars-loader?helperDirs[]=' + __dirname + '/_helpers'
+        loader: 'handlebars',
+        query: {
+          helperDirs: [
+            __dirname + '/_helpers',
+            __dirname + '/helpers'
+          ]
+        }
       },
 
       {

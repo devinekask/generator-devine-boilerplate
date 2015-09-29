@@ -22,8 +22,8 @@
     "extract-text-webpack-plugin": "^0.8.2",
     "gulp": "^3.9.0",
     "gulp-cached": "^1.1.0",
-    "gulp-eslint": "^1.0.0",
-    "handlebars": "^3.0.3",
+    "gulp-eslint": "^1.0.0",<% if (!node) { %>
+    "handlebars": "^3.0.3",<% } %>
     "handlebars-loader": "^1.1.1",
     "node-sass": "^3.3.3",
     "array.from": "^0.2.0",
@@ -37,9 +37,11 @@
     "npm": "3.x.x"
   },
   "dependencies": {
+    "handlebars": "^3.0.3",
     "forever": "^0.15.1",
     "hapi": "^10.0.1",
     "inert": "^3.0.1",
+    "vision": "^3.0.0",
     "dotenv": "^1.2.0",
     "lodash": "^3.10.1"
   },<% } %>

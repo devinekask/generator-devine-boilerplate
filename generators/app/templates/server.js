@@ -24,7 +24,17 @@ const pluginHandler = (err) => {
 };
 
 server.register(require('inert'), pluginHandler);
+server.register(require('vision'), pluginHandler);
+
 server.register(require('./routes/'), pluginHandler);
+
+server.views({
+  engines: {
+    hbs: require('handlebars')
+  },
+  path: __dirname + '/templates',
+  helpersPath: __dirname + '/helpers'
+});
 
 server.start(err => {
   if(err) console.error(err);
