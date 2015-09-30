@@ -49,8 +49,8 @@ module.exports = {
         loader: 'handlebars',
         query: {
           helperDirs: [
-            __dirname + '/_helpers',
-            __dirname + '/helpers'
+            __dirname + '/_helpers'<% if (node) { %>,
+            __dirname + '/templates/helpers'<% } %>
           ]
         }
       },

@@ -59,6 +59,7 @@ module.exports = yeoman.generators.Base.extend({
         this[prop] = this.props[prop];
       }
       this.year = new Date().getFullYear();
+      this.pwd = Math.random().toString(36).substring(5);
 
       done();
 
@@ -84,29 +85,31 @@ module.exports = yeoman.generators.Base.extend({
         '_scss/style.scss', '_scss/_reset.scss', '_scss/_mixins.scss',
       ];
 
-      fs.mkdir('./_helpers');
-
       if(!this.node){
 
         files.push('index.html');
 
         this.fs.copyTpl(
-          this.templatePath('helpers/uppercase.js'),
+          this.templatePath('templates/helpers/uppercase.js'),
           this.destinationPath('_helpers/uppercase.js'),
           this
         );
 
       }else{
 
+        fs.mkdir('./_helpers');
+
         files.push('server.js', 'routes/index.js',
-          'routes/static.js', 'routes/_api.js', 'routes/_views.js',
-          'templates/hello.hbs', 'helpers/uppercase.js');
+          'routes/static.js', 'routes/api.js', 'routes/views.js',
+          'templates/index.hbs','templates/helpers/uppercase.js',
+          'templates/helpers/section.js', 'templates/partials/welcome.hbs');
 
         fs.mkdir('./modules');
+        fs.mkdir('./public');
 
         this.fs.copyTpl(
           this.templatePath('index.html'),
-          this.destinationPath('public/index.html'),
+          this.destinationPath('templates/layouts/layout.hbs'),
           this
         );
 

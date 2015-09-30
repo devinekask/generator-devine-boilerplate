@@ -3,8 +3,16 @@
 
 body {
   font-size: 62.5%;
+  font-family: 'Helvetica neue', Helvetica, Arial, sans-serif;
 }
 
 main {
+  @include center;
+  padding-top: 30px;
+  width: 960px;
   font-size: 1.8em;
+}
+
+h1 {
+  font-size: 1.3em;
 }

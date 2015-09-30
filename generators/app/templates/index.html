@@ -2,14 +2,19 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title><%= projectname %></title>
+	<title><% if (!node) { %><%= projectname %><% } else { %>{{title}}<% } %></title>
+  <% if (node) { %>{{{_sections.header}}}<% } %>
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <link rel="stylesheet" type="text/css" href="<% if (node) { %>/<% } %>css/style.css"/>
 </head>
-<body>
+<body><% if (!node) { %>
   <main>
-    <p>Hello World</p>
-  </main>
+    <header>
+      <h1>Hello <%= author %></h1>
+    </header>
+  </main><% } else { %>
+  {{{content}}}<% } %>
   <script src="<% if (node) { %>/<% } %>js/script.js"></script>
+  <% if (node) { %>{{{_sections.footer}}}<% } %>
 </body>
 </html>

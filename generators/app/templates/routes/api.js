@@ -4,9 +4,9 @@ module.exports = [
 
   {
     method: 'GET',
-    path: '/helloapi',
+    path: '/hello',
     handler: (request, reply) => reply({
-      'data': 'helloworld'
+      'data': 'hello'
     })
   }
 

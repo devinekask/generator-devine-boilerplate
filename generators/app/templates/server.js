@@ -26,17 +26,38 @@ const pluginHandler = (err) => {
 server.register(require('inert'), pluginHandler);
 server.register(require('vision'), pluginHandler);
 
+server.register({
+  register: require('yar'),
+  options: {
+    storeBlank: false,
+    cookieOptions: {
+      password: '<%= pwd %>',
+      isSecure: false
+    }
+  }
+}, pluginHandler);
+
 server.register(require('./routes/'), pluginHandler);
 
 server.views({
+
   engines: {
     hbs: require('handlebars')
   },
-  path: __dirname + '/templates',
-  helpersPath: __dirname + '/helpers'
+
+  relativeTo: __dirname + '/templates',
+  path: '.',
+
+  layout: true,
+
+  helpersPath: 'helpers',
+  layoutPath: 'layouts',
+  partialsPath: 'partials'
+
 });
+
 
 server.start(err => {
   if(err) console.error(err);
-  console.log('Server running at:', server.info.uri);
+  console.log('Server running at: http://localhost:' + port);
 });

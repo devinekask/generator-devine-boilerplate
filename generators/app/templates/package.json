@@ -5,9 +5,10 @@
   "main": "server.js",<% } %>
   "author": "<%= author %>",
   "scripts": {
-    "development": "gulp & webpack --watch<% if (node) { %> & nodemon .<% } %>",
+    "development": "gulp & webpack --watch<% if (node) { %> & nodemon . <% } else { %> & npm run serve<% }  %>",
     "production": "webpack -d -p",<% if (node) { %>
     "start": "forever --minUptime 1000 --spinSleepTime 1000 .",<% } %>
+    "serve": "<% if (!node) { %>python -m SimpleHTTPServer 3000<% } else { %>npm run start<% } %>",
     "test": ""
   },
   "devDependencies": {
@@ -43,7 +44,9 @@
     "inert": "^3.0.1",
     "vision": "^3.0.0",
     "dotenv": "^1.2.0",
-    "lodash": "^3.10.1"
+    "lodash": "^3.10.1",
+    "joi": "^6.7.1",
+    "yar": "^4.2.0"
   },<% } %>
   "license": "MIT"
 }
