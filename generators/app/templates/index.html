@@ -3,7 +3,7 @@
 <head>
 	<meta charset="UTF-8">
 	<title><% if (!node) { %><%= projectname %><% } else { %>{{title}}<% } %></title>
-  <% if (node) { %>{{{_sections.header}}}<% } %>
+  <% if (node) { %>{{{_sections.head}}}<% } %>
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <link rel="stylesheet" type="text/css" href="<% if (node) { %>/<% } %>css/style.css"/>
 </head>
@@ -15,6 +15,6 @@
   </main><% } else { %>
   {{{content}}}<% } %>
   <script src="<% if (node) { %>/<% } %>js/script.js"></script>
-  <% if (node) { %>{{{_sections.footer}}}<% } %>
+  <% if (node) { %>{{{_sections.scripts}}}<% } %>
 </body>
 </html>
