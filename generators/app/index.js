@@ -165,6 +165,7 @@ module.exports = yeoman.generators.Base.extend({
         }
 
         fs.mkdir('./modules');
+        fs.mkdir('./models');
 
       }
 
