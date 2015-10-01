@@ -139,7 +139,8 @@ module.exports = yeoman.generators.Base.extend({
         }
 
         files.push('server.js', 'routes/index.js',
-          'routes/static.js', 'routes/api.js');
+          'routes/static.js', 'routes/api.js',
+          'plugins/index.js', 'plugins/helloplugin.js');
 
         if(this.hbs_server){
 
