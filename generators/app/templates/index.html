@@ -2,19 +2,19 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title><% if (!node) { %><%= projectname %><% } else { %>{{title}}<% } %></title>
-  <% if (node) { %>{{{_sections.head}}}<% } %>
-  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+	<title><% if (!hbs_server) { %><%= projectname %><% } else { %>{{title}}<% } %></title><% if (hbs_server) { %>
+  {{{_sections.head}}}
+  <% } %><meta name="viewport" content="width=device-width, initial-scale=1"/>
   <link rel="stylesheet" type="text/css" href="<% if (node) { %>/<% } %>css/style.css"/>
 </head>
-<body><% if (!node) { %>
+<body><% if (!hbs_server) { %>
   <main>
     <header>
       <h1>Hello <%= author %></h1>
     </header>
   </main><% } else { %>
   {{{content}}}<% } %>
-  <script src="<% if (node) { %>/<% } %>js/script.js"></script>
-  <% if (node) { %>{{{_sections.scripts}}}<% } %>
+  <script src="<% if (node) { %>/<% } %>js/script.js"></script><% if (hbs_server) { %>
+  {{{_sections.scripts}}}<% } %>
 </body>
 </html>

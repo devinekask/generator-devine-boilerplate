@@ -7,9 +7,9 @@ var cached = require('gulp-cached');
 var files = [
   '**/*.js',
   '!_js/**/*.*',<% if (!node) { %>
-  '!js/**/*.*',<% } %>
-  '!node_modules/**/*.*'<% if (node) { %>,
-  '!public/**/*.*'<% } %>
+  '!js/**/*.*',<% } else { %>
+  '!public/**/*.*',<% } %>
+  '!node_modules/**/*.*'
 ];
 
 gulp.task('watch', function () {

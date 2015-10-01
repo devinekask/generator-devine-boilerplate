@@ -39,7 +39,7 @@ module.exports = {
         test: /\.(js|jsx)$/,
         exclude: /node_modules/,
         loader: 'eslint'
-      },
+      },<% if (hbs_client) { %>
 
 
       {
@@ -49,11 +49,11 @@ module.exports = {
         loader: 'handlebars',
         query: {
           helperDirs: [
-            __dirname + '/_helpers'<% if (node) { %>,
+            __dirname + '/_helpers'<% if (hbs_server) { %>,
             __dirname + '/templates/helpers'<% } %>
           ]
         }
-      },
+      },<% } %>
 
       {
         test: /\.scss$/,
@@ -96,7 +96,7 @@ module.exports = {
   ],
 
   resolve: {
-    extensions: ['', '.json', '.js', '.css', '.jsx', '.hbs', '.handlebars']
+    extensions: ['', '.json', '.js', '.css', '.jsx'<% if (hbs_client) { %>, '.hbs', '.handlebars'<% } %>]
   }
 
 };

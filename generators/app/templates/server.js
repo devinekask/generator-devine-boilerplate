@@ -23,7 +23,7 @@ const pluginHandler = (err) => {
   if(err) console.error(err);
 };
 
-server.register(require('inert'), pluginHandler);
+server.register(require('inert'), pluginHandler);<% if (hbs_server) { %>
 server.register(require('vision'), pluginHandler);
 
 server.register({
@@ -35,9 +35,9 @@ server.register({
       isSecure: false
     }
   }
-}, pluginHandler);
+}, pluginHandler);<% } %>
 
-server.register(require('./routes/'), pluginHandler);
+server.register(require('./routes/'), pluginHandler);<% if (hbs_server) { %>
 
 server.views({
 
@@ -54,8 +54,7 @@ server.views({
   layoutPath: 'layouts',
   partialsPath: 'partials'
 
-});
-
+});<% } %>
 
 server.start(err => {
   if(err) console.error(err);

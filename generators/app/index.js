@@ -40,13 +40,34 @@ module.exports = yeoman.generators.Base.extend({
         default: default_author
       },{
         type: 'confirm',
+        name: 'hbs_client',
+        message: 'Do you need templates on the client (Handlebars)? (Yes)',
+        default: true
+      },{
+        type: 'confirm',
         name: 'node',
-        message: 'Do you need a Node server? (Yes)',
+        message: 'Do you need a Node server (Hapi)? (Yes)',
+        default: true
+      },{
+        when: function(response) {
+          return response.node;
+        },
+        type: 'confirm',
+        name: 'hbs_server',
+        message: 'Do you need templates on the server (Handlebars)? (Yes)',
+        default: true
+      },{
+        when: function(response) {
+          return response.node;
+        },
+        type: 'confirm',
+        name: 'heroku',
+        message: 'Make your project ready for Heroku deployment? (Yes)',
         default: true
       },{
         type: 'confirm',
         name: 'git',
-        message: 'init an empty git repository? (Yes)',
+        message: 'create a git repository (+ initial commit)? (Yes)',
         default: true
       }
     ];
@@ -55,9 +76,18 @@ module.exports = yeoman.generators.Base.extend({
 
       this.props = props;
 
+      if(!this.props.hbs_server){
+        this.hbs_server = false;
+      }
+
+      if(!this.props.heroku){
+        this.heroku = false;
+      }
+
       for(var prop in this.props){
         this[prop] = this.props[prop];
       }
+
       this.year = new Date().getFullYear();
       this.pwd = Math.random().toString(36).substring(5);
 
@@ -80,14 +110,15 @@ module.exports = yeoman.generators.Base.extend({
     app: function(){
 
       var files = [
-        '_hbs/helloworld.hbs',
         '_js/script.js', '_js/helpers/util.js',
         '_scss/style.scss', '_scss/_reset.scss', '_scss/_mixins.scss',
       ];
 
-      if(!this.node){
+      if(this.hbs_client){
+        files.push('_hbs/helloworld.hbs');
+      }
 
-        files.push('index.html');
+      if(this.hbs_client && !this.hbs_server){
 
         this.fs.copyTpl(
           this.templatePath('templates/helpers/uppercase.js'),
@@ -95,23 +126,44 @@ module.exports = yeoman.generators.Base.extend({
           this
         );
 
+      }
+
+      if(!this.node){
+
+        files.push('index.html');
+
       }else{
 
-        fs.mkdir('./_helpers');
+        if(this.hbs_client){
+          fs.mkdir('./_helpers');
+        }
 
         files.push('server.js', 'routes/index.js',
-          'routes/static.js', 'routes/api.js', 'routes/views.js',
-          'templates/index.hbs','templates/helpers/uppercase.js',
-          'templates/helpers/section.js', 'templates/partials/welcome.hbs');
+          'routes/static.js', 'routes/api.js');
+
+        if(this.hbs_server){
+
+          files.push('routes/views.js', 'templates/index.hbs',
+            'templates/helpers/uppercase.js', 'templates/helpers/section.js',
+            'templates/partials/welcome.hbs');
+
+          this.fs.copyTpl(
+            this.templatePath('index.html'),
+            this.destinationPath('templates/layouts/layout.hbs'),
+            this
+          );
+
+        }else{
+
+          this.fs.copyTpl(
+            this.templatePath('index.html'),
+            this.destinationPath('public/index.html'),
+            this
+          );
+
+        }
 
         fs.mkdir('./modules');
-        fs.mkdir('./public');
-
-        this.fs.copyTpl(
-          this.templatePath('index.html'),
-          this.destinationPath('templates/layouts/layout.hbs'),
-          this
-        );
 
       }
 
@@ -127,13 +179,17 @@ module.exports = yeoman.generators.Base.extend({
         '.babelrc', '.editorconfig',
         '.eslintrc',
         '_config.js', 'webpack.config.js',
-        'package.json', 'gulpfile.js',
+        'package.json',
         'README.md', 'LICENSE'
       ];
 
-
       if(this.node){
-        files.push('nodemon.json', 'Procfile', '.env', '.slugignore');
+
+        files.push('nodemon.json', '.env', 'gulpfile.js');
+
+        if(this.heroku){
+          files.push('Procfile', '.slugignore')
+        }
       }
 
       for(var i = 0; i < files.length; i++){

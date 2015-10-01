@@ -1,16 +1,17 @@
 'use strict';
 
-//some features need the be polyfilled..
+// some features need the be polyfilled..
 // https://babeljs.io/docs/usage/polyfill/
 
 // import 'babel-core/polyfill';
-// or import specific polyfills from core-js
+// or import specific polyfills<% if(hbs_client){ %>
 
-import helloworldTpl from '../_hbs/helloworld';
+import helloworldTpl from '../_hbs/helloworld';<% } %>
 // import {$} from './helpers/util';
 
-const init = () => {
-  console.log(helloworldTpl({name: '<%= author %>'}));
+const init = () => {<% if(hbs_client){ %>
+  console.log(helloworldTpl({name: '<%= author %>'}));<% } else { %>
+  console.log('Hello World <%= author %>');<% } %>
 };
 
 init();
