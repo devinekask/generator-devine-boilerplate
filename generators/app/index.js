@@ -196,13 +196,15 @@ module.exports = yeoman.generators.Base.extend({
         this._copy(files[i]);
       }
 
-      this.fs.copyTpl(
-        this.templatePath('_gitignore'),
-        this.destinationPath('.gitignore'),
-        this
-      );
+      if(this.git){
 
+        this.fs.copyTpl(
+          this.templatePath('_gitignore'),
+          this.destinationPath('.gitignore'),
+          this
+        );
 
+      }
 
     }
 
