@@ -38,7 +38,7 @@ module.exports = {
         //jsx for React
         test: /\.(js|jsx)$/,
         exclude: /node_modules/,
-        loader: 'eslint'
+        loader: 'eslint?fix'
       },<% if (hbs_client) { %>
 
 
@@ -49,8 +49,8 @@ module.exports = {
         loader: 'handlebars',
         query: {
           helperDirs: [
-            __dirname + '/_helpers'<% if (hbs_server) { %>,
-            __dirname + '/templates/helpers'<% } %>
+            `${__dirname}/_helpers`<% if (hbs_server) { %>,
+            `${__dirname}/templates/helpers`<% } %>
           ]
         }
       },<% } %>

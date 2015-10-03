@@ -12,11 +12,11 @@ var files = [
   '!node_modules/**/*.*'
 ];
 
-gulp.task('watch', function () {
+gulp.task('watch', () => {
   gulp.watch(files, ['eslint']);
 });
 
-gulp.task('eslint', function () {
+gulp.task('eslint', () => {
   return gulp.src(files)
     .pipe(cached('linting'))
     .pipe(eslint())

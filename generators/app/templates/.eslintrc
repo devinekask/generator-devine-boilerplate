@@ -180,7 +180,13 @@
     "vars-on-top": 0,
     "wrap-iife": 0,
     "wrap-regex": 0,
-    "yoda": [2, "never"]
+    "yoda": [2, "never"],
+    "no-useless-concat": 2,
+    "prefer-arrow-callback": 2,
+    "block-spacing": [2, "always"],
+    "no-dupe-class-members": 2,
+    "prefer-template": 2,
+    "no-negated-condition": 2
   }
 
 }

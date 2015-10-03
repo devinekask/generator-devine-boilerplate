@@ -1,6 +1,6 @@
 {
   "name": "generator-devine-project",
-  "version": "1.10.1",
+  "version": "1.11.1",
   "description": "Yeoman generator",
   "license": "MIT",
   "main": "app/index.js",

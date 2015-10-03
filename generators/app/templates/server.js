@@ -46,7 +46,7 @@ server.views({
     hbs: require('handlebars')
   },
 
-  relativeTo: __dirname + '/templates',
+  relativeTo: `${__dirname}/templates`,
   path: '.',
 
   layout: true,
@@ -59,5 +59,5 @@ server.views({
 
 server.start(err => {
   if(err) console.error(err);
-  console.log('Server running at: http://localhost:' + port);
+  console.log(`Server running at: http://localhost:${port}`);
 });
