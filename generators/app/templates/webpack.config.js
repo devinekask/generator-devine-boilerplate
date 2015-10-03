@@ -38,7 +38,7 @@ module.exports = {
         //jsx for React
         test: /\.(js|jsx)$/,
         exclude: /node_modules/,
-        loader: 'eslint?fix'
+        loader: 'eslint'
       },<% if (hbs_client) { %>
 
 
