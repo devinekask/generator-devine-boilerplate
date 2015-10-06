@@ -10,7 +10,7 @@ module.exports.register = (server, options, next) => {
 
   fs.readdirSync(__dirname).forEach(file => {
     if (file === 'index.js' || !file.endsWith('.js') || file.startsWith('_')) return;
-    server.register(require('./' + file), pluginHandler);
+    server.register(require(`./${file}`), pluginHandler);
   });
 
   next();

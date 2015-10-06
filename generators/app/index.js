@@ -101,7 +101,10 @@ module.exports = yeoman.generators.Base.extend({
     this.fs.copyTpl(
       this.templatePath(file),
       this.destinationPath(file),
-      this
+      this,
+      {
+        interpolate: /<%=([\s\S]+?)%>/g
+      }
     );
   },
 
@@ -123,7 +126,10 @@ module.exports = yeoman.generators.Base.extend({
         this.fs.copyTpl(
           this.templatePath('templates/helpers/uppercase.js'),
           this.destinationPath('_helpers/uppercase.js'),
-          this
+          this,
+          {
+            interpolate: /<%=([\s\S]+?)%>/g
+          }
         );
 
       }
@@ -151,7 +157,10 @@ module.exports = yeoman.generators.Base.extend({
           this.fs.copyTpl(
             this.templatePath('index.html'),
             this.destinationPath('templates/layouts/layout.hbs'),
-            this
+            this,
+            {
+              interpolate: /<%=([\s\S]+?)%>/g
+            }
           );
 
         }else{
@@ -159,7 +168,10 @@ module.exports = yeoman.generators.Base.extend({
           this.fs.copyTpl(
             this.templatePath('index.html'),
             this.destinationPath('public/index.html'),
-            this
+            this,
+            {
+              interpolate: /<%=([\s\S]+?)%>/g
+            }
           );
 
         }
@@ -203,7 +215,10 @@ module.exports = yeoman.generators.Base.extend({
         this.fs.copyTpl(
           this.templatePath('_gitignore'),
           this.destinationPath('.gitignore'),
-          this
+          this,
+          {
+            interpolate: /<%=([\s\S]+?)%>/g
+          }
         );
 
       }
