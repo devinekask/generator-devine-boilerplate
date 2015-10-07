@@ -93,6 +93,10 @@ module.exports = {
 
   resolve: {
     extensions: ['', '.json', '.js', '.css'<% if (react) { %>, '.jsx'<% } %><% if (hbs_client) { %>, '.hbs', '.handlebars'<% } %>]
-  }
+  }<% if (react) { %>,
+
+  externals: {
+    "react": "react"
+  }<% } %>
 
 };
