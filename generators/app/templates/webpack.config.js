@@ -96,7 +96,7 @@ module.exports = {
   }<% if (react) { %>,
 
   externals: {
-    "React": "react"
+    "react": "React"
   }<% } %>
 
 };
