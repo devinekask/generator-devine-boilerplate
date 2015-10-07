@@ -28,22 +28,19 @@ module.exports = {
     loaders: [
 
       {
-        //jsx for React
-        test: /\.(js|jsx)$/,
+        test: /\.<% if (react) { %>(<% } %>js<% if (react) { %>|jsx)<% } %>$/,
         exclude: /node_modules/,
         loader: 'babel'
       },
 
       {
-        //jsx for React
-        test: /\.(js|jsx)$/,
+        test: /\.<% if (react) { %>(<% } %>js<% if (react) { %>|jsx)<% } %>$/,
         exclude: /node_modules/,
         loader: 'eslint'
       },<% if (hbs_client) { %>
 
 
       {
-        //handlebars
         test: /\.(hbs|handlebars)$/,
         exclude: /node_modules/,
         loader: 'handlebars',
@@ -66,7 +63,6 @@ module.exports = {
 
   postcss: function(){
 
-    //array with postcss plugins, keep in this order
     return [
 
       require('autoprefixer-core')({
@@ -86,17 +82,17 @@ module.exports = {
     //extract CSS into seperate file
     new ExtractTextPlugin(
       config.build('css', 'dest')
-    ),
+    )<% if (react) { %>,
 
     //react smaller build
     new webpack.DefinePlugin({
       'process.env': {NODE_ENV: '\'production\''}
-    })
+    })<% } %>
 
   ],
 
   resolve: {
-    extensions: ['', '.json', '.js', '.css', '.jsx'<% if (hbs_client) { %>, '.hbs', '.handlebars'<% } %>]
+    extensions: ['', '.json', '.js', '.css'<% if (react) { %>, '.jsx'<% } %><% if (hbs_client) { %>, '.hbs', '.handlebars'<% } %>]
   }
 
 };

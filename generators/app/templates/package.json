@@ -28,7 +28,8 @@
     "array.from": "^0.2.0",
     "postcss-loader": "^0.5.1",
     "sass-loader": "^2.0.1",
-    "style-loader": "^0.12.3",
+    "style-loader": "^0.12.3",<% if (react) { %>
+    "eslint-plugin-react": "^3.5.1",<% } %>
     "webpack": "^1.11.0"
   },<% if (node) { %>
   "engines": {

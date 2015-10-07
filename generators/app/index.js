@@ -45,6 +45,11 @@ module.exports = yeoman.generators.Base.extend({
         default: true
       },{
         type: 'confirm',
+        name: 'react',
+        message: 'Using React (with JSX) (Yes)',
+        default: true
+      },{
+        type: 'confirm',
         name: 'node',
         message: 'Do you need a Node server (Hapi)? (Yes)',
         default: true
