@@ -10,7 +10,8 @@ module.exports = [
         path: '.',
         redirectToSlash: true,
         index: true
-      }<% } else if (react && !hbs_server) { %>file: 'index.html'<% } %>
+      }<% } else if (react && !hbs_server) { %>
+      file: 'index.html'<% } %>
     }
   }<% if (react && !hbs_server) { %>,
 

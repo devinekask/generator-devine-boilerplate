@@ -14,7 +14,7 @@ import {HelloWorld} from './components/';<% } %><% } %>
 
 const init = () => {<% if(hbs_client){ %>
   console.log(helloworldTpl({name: '<%= author %>'}));<% } else if(react && !react_router){ %>
-  ReactDOM.render(<HelloWorld author='<%= author %>'/>, document.querySelector('main'));<% } else if(react && react_router){ %>
+  ReactDOM.render(<HelloWorld author='<%= author %>'/>, document.querySelector('section'));<% } else if(react && react_router){ %>
   ReactDOM.render(router, document.querySelector('main'));<% } else { %>
   console.log('Hello World <%= author %>');<% } %>
 };
