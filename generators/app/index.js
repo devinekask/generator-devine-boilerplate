@@ -6,6 +6,7 @@ var yosay = require('yosay');
 var path = require('path');
 
 var fs = require('fs');
+var mkdirp = require('mkdirp');
 
 var spawn = require('child_process').spawnSync;
 var exec = require('child_process').execSync;
@@ -44,9 +45,20 @@ module.exports = yeoman.generators.Base.extend({
         message: 'Do you need templates on the client (Handlebars)? (Yes)',
         default: true
       },{
+        when: function(response) {
+          return !response.hbs_client;
+        },
         type: 'confirm',
         name: 'react',
         message: 'Using React (with JSX) (Yes)',
+        default: true
+      },{
+        when: function(response) {
+          return response.react;
+        },
+        type: 'confirm',
+        name: 'react_router',
+        message: 'Using react-router (Yes)',
         default: true
       },{
         type: 'confirm',
@@ -87,6 +99,14 @@ module.exports = yeoman.generators.Base.extend({
 
       if(!this.props.heroku){
         this.heroku = false;
+      }
+
+      if(!this.props.react_router){
+        this.react_router = false;
+      }
+
+      if(!this.props.react){
+        this.react = false;
       }
 
       for(var prop in this.props){
@@ -184,6 +204,19 @@ module.exports = yeoman.generators.Base.extend({
         fs.mkdir('./modules');
         fs.mkdir('./models');
 
+      }
+
+
+      if(this.react){
+
+        files.push('./_js/components/index.js');
+        files.push('./_js/components/HelloWorld.jsx');
+
+        if(this.react_router){
+          files.push('./_js/router/index.js');
+          files.push('./_js/pages/index.js');
+          files.push('./_js/pages/Home.jsx');
+        }
       }
 
       for(var i = 0; i < files.length; i++){

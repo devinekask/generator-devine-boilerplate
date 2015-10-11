@@ -7,14 +7,15 @@
   <% } %><meta name="viewport" content="width=device-width, initial-scale=1"/>
   <link rel="stylesheet" type="text/css" href="<% if (node) { %>/<% } %>css/style.css"/>
 </head>
-<body><% if (!hbs_server) { %>
-  <main>
-    <header>
-      <h1>Hello <%= author %></h1>
-    </header>
-  </main><% } else { %>
-  {{{content}}}<% } %><% if (react) { %>
-  <script src="//cdnjs.cloudflare.com/ajax/libs/react/0.13.3/react.min.js"></script><% } %>
+<body><% if (!hbs_server || react_router) { %>
+  <main><% if (!react_router) { %>
+    <section>
+      <header>
+        <h1>Hello <%= author %></h1>
+      </header>
+    </section>
+  <% } %></main><% } else { %>
+  {{{content}}}<% } %>
   <script src="<% if (node) { %>/<% } %>js/script.js"></script><% if (hbs_server) { %>
   {{{_sections.scripts}}}<% } %>
 </body>
