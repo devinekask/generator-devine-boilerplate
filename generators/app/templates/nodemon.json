@@ -22,6 +22,10 @@
     "gulpfile.js",
     "package.json",
     "webpack.config.js"
-  ]
+  ],
+
+  "events": {
+    "start": "eslint */"
+  }
 
 }

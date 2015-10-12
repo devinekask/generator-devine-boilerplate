@@ -8,7 +8,6 @@
 .babelrc
 _config.js
 .gitignore
-gulpfile.js
 LICENCE
 README.md
 webpack.config.js

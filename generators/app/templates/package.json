@@ -5,7 +5,7 @@
   "main": "server.js",<% } %>
   "author": "<%= author %>",
   "scripts": {
-    "development": "<% if (node) { %>gulp & <% } %>webpack --watch & npm run serve",
+    "development": "webpack --watch & npm run serve",
     "production": "webpack -d -p",<% if (node) { %>
     "start": "forever --minUptime 1000 --spinSleepTime 1000 .",<% } %>
     "serve": "<% if (!node) { %>python -m SimpleHTTPServer 3000<% } else { %>nodemon .<% } %>"
@@ -18,10 +18,7 @@
     "css-loader": "^0.16.0",
     "eslint": "^1.6.0",
     "eslint-loader": "^1.0.0",
-    "extract-text-webpack-plugin": "^0.8.2",<% if (node) { %>
-    "gulp": "^3.9.0",
-    "gulp-cached": "^1.1.0",
-    "gulp-eslint": "^1.0.0",<% } %><% if (!hbs_server && hbs_client) { %>
+    "extract-text-webpack-plugin": "^0.8.2",<% if (!hbs_server && hbs_client) { %>
     "handlebars": "^4.0.3",<% } %><% if (hbs_client) { %>
     "handlebars-loader": "^1.1.1",<% } %>
     "node-sass": "^3.3.3",

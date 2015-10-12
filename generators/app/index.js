@@ -229,7 +229,7 @@ module.exports = yeoman.generators.Base.extend({
 
       var files = [
         '.babelrc', '.editorconfig',
-        '.eslintrc',
+        '.eslintrc', '.eslintignore',
         '_config.js', 'webpack.config.js',
         'package.json',
         'README.md', 'LICENSE'
@@ -237,10 +237,10 @@ module.exports = yeoman.generators.Base.extend({
 
       if(this.node){
 
-        files.push('nodemon.json', '.env', 'gulpfile.js');
+        files.push('nodemon.json', '.env');
 
         if(this.heroku){
-          files.push('Procfile', '.slugignore')
+          files.push('Procfile', '.slugignore');
         }
       }
 
