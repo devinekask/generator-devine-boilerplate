@@ -78,6 +78,14 @@ module.exports = yeoman.generators.Base.extend({
           return response.node;
         },
         type: 'confirm',
+        name: 'mongoose',
+        message: 'Using MongoDB (Mongoose)? (Yes)',
+        default: true
+      },{
+        when: function(response) {
+          return response.node;
+        },
+        type: 'confirm',
         name: 'heroku',
         message: 'Make your project ready for Heroku deployment? (Yes)',
         default: true
@@ -99,6 +107,10 @@ module.exports = yeoman.generators.Base.extend({
 
       if(!this.props.heroku){
         this.heroku = false;
+      }
+
+      if(!this.props.mongoose){
+        this.mongoose = false;
       }
 
       if(!this.props.react_router){
@@ -170,8 +182,15 @@ module.exports = yeoman.generators.Base.extend({
         }
 
         files.push('server.js', 'routes/index.js',
-          'routes/static.js', 'routes/api.js',
-          'plugins/index.js', 'plugins/helloplugin.js');
+          'routes/static.js',
+          'plugins/index.js', 'plugins/helloplugin.js',
+          'modules/validateFileName.js');
+
+        if(this.mongoose){
+          files.push('plugins/mongoose.js', 'models/mongoose/_Model.js');
+        }else{
+          files.push('routes/api.js');
+        }
 
         if(this.hbs_server){
 
@@ -201,7 +220,6 @@ module.exports = yeoman.generators.Base.extend({
 
         }
 
-        fs.mkdir('./modules');
         fs.mkdir('./models');
 
       }

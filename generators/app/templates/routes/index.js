@@ -3,11 +3,13 @@
 let fs = require('fs');
 let path = require('path');
 
+let validateFileName = require('../modules/validateFileName');
+
 module.exports.register = (server, options, next) => {
 
   fs.readdirSync(__dirname).forEach(file => {
 
-    if (file === 'index.js' || !file.endsWith('.js') || file.startsWith('_')) return;
+    if(!validateFileName(file)) return;
 
     let mod = {};
     mod[path.basename(file, '.js')] = require(path.join(__dirname, file));
