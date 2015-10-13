@@ -13,6 +13,9 @@ let server = new Hapi.Server({
       files: {
         relativeTo: path.join(__dirname, 'public')
       }
+    },
+    router: {
+      stripTrailingSlash: true
     }
   }
 });
