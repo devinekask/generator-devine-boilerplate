@@ -187,7 +187,7 @@ module.exports = yeoman.generators.Base.extend({
           'modules/validateFileName.js');
 
         if(this.mongoose){
-          files.push('plugins/mongoose.js', 'models/mongoose/_Model.js');
+          files.push('models/mongoose/_Model.js');
         }else{
           files.push('routes/api.js');
         }
@@ -223,7 +223,6 @@ module.exports = yeoman.generators.Base.extend({
         fs.mkdir('./models');
 
       }
-
 
       if(this.react){
 
