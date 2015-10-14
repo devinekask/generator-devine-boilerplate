@@ -8,7 +8,7 @@
     "development": "webpack --watch & npm run serve",
     "production": "webpack -d -p",<% if (node) { %>
     "start": "forever --minUptime 1000 --spinSleepTime 1000 .",<% } %>
-    "serve": "<% if (!node) { %>python -m SimpleHTTPServer 3000<% } else { %>nodemon .<% } %>"
+    "serve": "<% if (!node) { %>python -m SimpleHTTPServer<% } else { %>nodemon .<% } %>"
   },
   "devDependencies": {
     "autoprefixer-core": "^5.2.1",
