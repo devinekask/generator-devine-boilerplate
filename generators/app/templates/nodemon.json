@@ -25,7 +25,7 @@
   ],
 
   "events": {
-    "start": "eslint */"
+    "start": "eslint */ --ignore-pattern _js/"
   }
 
 }
