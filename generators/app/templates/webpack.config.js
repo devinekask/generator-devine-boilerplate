@@ -68,8 +68,8 @@ module.exports = {
 
     return [
 
-      require('autoprefixer-core')({
-        browsers: ['IE >= 9', 'last 2 version'],
+      require('cssnext')({
+        browsers: ['IE >= 10', 'last 2 version'],
         cascade: false
       })
 
