@@ -30,7 +30,10 @@ module.exports = {
       {
         test: /\.<% if (react) { %>(<% } %>js<% if (react) { %>|jsx)<% } %>$/,
         exclude: /node_modules/,
-        loader: 'babel'
+        loader: 'babel',
+        query: {
+          babelrc: path.join(__dirname, '.babelrc')
+        }
       },
 
       {
@@ -38,7 +41,6 @@ module.exports = {
         exclude: /node_modules/,
         loader: 'eslint'
       },<% if (hbs_client) { %>
-
 
       {
         test: /\.(hbs|handlebars)$/,
@@ -91,8 +93,18 @@ module.exports = {
 
   ],
 
+  eslint: {
+    configFile: path.join(__dirname, '.eslintrc'),
+    ignorePath: path.join(__dirname, '.eslintignore')
+  },
+
   resolve: {
-    extensions: ['', '.json', '.js', '.css'<% if (react) { %>, '.jsx'<% } %><% if (hbs_client) { %>, '.hbs', '.handlebars'<% } %>]
+    extensions: ['', '.json', '.js', '.css'<% if (react) { %>, '.jsx'<% } %><% if (hbs_client) { %>, '.hbs', '.handlebars'<% } %>],
+    fallback: path.join(__dirname, 'node_modules')
+  },
+
+  resolveLoader: {
+    fallback: path.join(__dirname, 'node_modules')
   }
 
 };

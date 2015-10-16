@@ -194,6 +194,8 @@
     "block-spacing": [2, "always"],
     "no-dupe-class-members": 2,
     "prefer-template": 2,
+    "no-magic-numbers": 2,
+    "no-empty-pattern": 2,
     "no-negated-condition": 2<% if (react) { %>,
     "react/display-name": 0,
     "react/forbid-prop-types": 0,

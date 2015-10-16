@@ -27,6 +27,12 @@ module.exports = [
 
   {
     method: 'GET',
+    path: '/api/{param*}',
+    handler: (request, reply) => reply().code(404)
+  },
+
+  {
+    method: 'GET',
     path: '/js/{param*}',
     handler: {
       directory: {
