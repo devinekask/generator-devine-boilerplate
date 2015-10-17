@@ -68,9 +68,14 @@ module.exports = {
 
     return [
 
-      require('cssnext')({
+      require('postcss-will-change'),
+      require('postcss-cssnext')({
         browsers: ['IE >= 10', 'last 2 version'],
-        cascade: false
+        features: {
+          autoprefixer: {
+            cascase: false
+          }
+        }
       })
 
     ];
