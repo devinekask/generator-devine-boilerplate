@@ -42,24 +42,24 @@ module.exports = yeoman.generators.Base.extend({
       },{
         type: 'confirm',
         name: 'hbs_client',
-        message: 'Do you need templates on the client (Handlebars)? (Yes)',
-        default: true
+        message: 'Do you need templates on the client (Handlebars)? (No)',
+        default: false
       },{
         when: function(response) {
           return !response.hbs_client;
         },
         type: 'confirm',
         name: 'react',
-        message: 'Using React (with JSX) (Yes)',
-        default: true
+        message: 'Using React (with JSX) (No)',
+        default: false
       },{
         when: function(response) {
           return response.react;
         },
         type: 'confirm',
         name: 'react_router',
-        message: 'Using react-router (Yes)',
-        default: true
+        message: 'Using react-router (No)',
+        default: false
       },{
         type: 'confirm',
         name: 'node',
@@ -71,24 +71,24 @@ module.exports = yeoman.generators.Base.extend({
         },
         type: 'confirm',
         name: 'hbs_server',
-        message: 'Do you need templates on the server (Handlebars)? (Yes)',
-        default: true
+        message: 'Do you need templates on the server (Handlebars)? (No)',
+        default: false
       },{
         when: function(response) {
           return response.node;
         },
         type: 'confirm',
         name: 'mongoose',
-        message: 'Using MongoDB (Mongoose)? (Yes)',
-        default: true
+        message: 'Using MongoDB (Mongoose)? (No)',
+        default: false
       },{
         when: function(response) {
           return response.node;
         },
         type: 'confirm',
         name: 'heroku',
-        message: 'Make your project ready for Heroku deployment? (Yes)',
-        default: true
+        message: 'Make your project ready for Heroku deployment? (No)',
+        default: false
       },{
         type: 'confirm',
         name: 'git',
