@@ -41,9 +41,7 @@ server.register({
 }, pluginHandler);<% } %>
 
 server.register(require('./plugins/'), pluginHandler);
-server.register(require('./routes/'), pluginHandler);<% if (mongoose) { %>
-server.register(require('hapi-mongoose-api'), pluginHandler);
-<% } %><% if (hbs_server) { %>
+server.register(require('./routes/'), pluginHandler);
 
 server.views({
 

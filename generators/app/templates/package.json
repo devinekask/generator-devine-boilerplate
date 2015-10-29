@@ -43,7 +43,7 @@
     "hapi": "^10.0.1",
     "inert": "^3.0.1",<% if (hbs_server) { %>
     "vision": "^3.0.0",<% } %><% if (mongoose) { %>
-    "hapi-mongoose-api": "^0.1.0",<% } %>
+    "mongoose": "^4.2.3",<% } %>
     "dotenv": "^1.2.0",
     "lodash": "^3.10.1"<% if (hbs_server) { %>,
     "joi": "^6.7.1",

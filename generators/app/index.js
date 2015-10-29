@@ -187,10 +187,10 @@ module.exports = yeoman.generators.Base.extend({
           'modules/validateFileName.js');
 
         if(this.mongoose){
-          files.push('models/mongoose/_Model.js');
-        }else{
-          files.push('routes/api.js');
+          mkdirp('./models/mongoose');
         }
+
+        files.push('routes/api.js');
 
         if(this.hbs_server){
 
