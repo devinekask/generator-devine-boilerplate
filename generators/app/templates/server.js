@@ -12,8 +12,13 @@ let server = new Hapi.Server({
     routes: {
       files: {
         relativeTo: path.join(__dirname, 'public')
+      }<% if (hbs_server) { %>,
+      validate: {
+        options: {
+          abortEarly: false
+        }
       }
-    },
+    },<% } %>
     router: {
       stripTrailingSlash: true
     }
@@ -39,9 +44,8 @@ server.register({
     }
   }
 }, pluginHandler);<% } %>
-
 server.register(require('./plugins/'), pluginHandler);
-server.register(require('./routes/'), pluginHandler);
+server.register(require('./routes/'), pluginHandler);<% if (hbs_server) { %>
 
 server.views({
 
