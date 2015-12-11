@@ -41,14 +41,14 @@ module.exports = yeoman.generators.Base.extend({
         default: default_author
       },{
         type: 'confirm',
-        name: 'hbs_client',
-        message: 'Do you need templates on the client (Handlebars)? (No)',
-        default: false
-      },{
-        type: 'confirm',
         name: 'test',
         message: 'Need testing (Mocha & Chai)? (Yes)',
         default: true
+      },{
+        type: 'confirm',
+        name: 'hbs_client',
+        message: 'Do you need templates on the client (Handlebars)? (No)',
+        default: false
       },{
         when: function(response) {
           return !response.hbs_client;
