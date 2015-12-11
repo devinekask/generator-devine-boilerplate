@@ -7,7 +7,8 @@
   "scripts": {
     "development": "webpack --watch & npm run serve",
     "production": "webpack -d -p",<% if (node) { %>
-    "start": "forever --minUptime 1000 --spinSleepTime 1000 .",<% } %>
+    "start": "forever --minUptime 1000 --spinSleepTime 1000 .",<% } %><% if (test) { %>
+    "test": "mocha --compilers js:babel-core/register --recursive",<% } %>
     "serve": "<% if (!node) { %>python -m SimpleHTTPServer<% } else { %>nodemon .<% } %>"
   },
   "devDependencies": {
@@ -28,12 +29,16 @@
     "node-sass": "^3.3.3",
     "array.from": "^0.2.0",
     "postcss-loader": "^0.6.0",
-    "sass-loader": "^2.0.1",
+    "sass-loader": "^2.0.1",<% if (test) { %>
+    "mocha": "^2.3.4",
+    "chai": "^3.4.1",<% } %>
     "style-loader": "^0.12.3",<% if (react) { %>
     "react": "^0.14.0",
     "react-dom": "^0.14.0",<% if (react_router) { %>
     "react-router": "^1.0.2",
-    "history": "^1.15.0",<% } %>
+    "history": "^1.15.0",<% } %><% if (redux) { %><% if (react_router) { %>
+    "redux-router": "1.0.0-beta5",<% } %>
+    "redux": "^3.0.4",<% } %>
     "eslint-plugin-react": "^3.5.1",<% } %>
     "webpack": "^1.11.0"
   },<% if (node) { %>
@@ -51,6 +56,7 @@
     "dotenv": "^1.2.0",
     "lodash": "^3.10.1"<% if (hbs_server) { %>,
     "joi": "^6.7.1",
+    "joi-objectid": "^2.0.0",
     "yar": "^4.2.0"<% } %>
   },<% } %>
   "license": "MIT"

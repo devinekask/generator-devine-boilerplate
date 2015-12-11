@@ -45,12 +45,17 @@ module.exports = yeoman.generators.Base.extend({
         message: 'Do you need templates on the client (Handlebars)? (No)',
         default: false
       },{
+        type: 'confirm',
+        name: 'test',
+        message: 'Need testing (Mocha & Chai)? (Yes)',
+        default: true
+      },{
         when: function(response) {
           return !response.hbs_client;
         },
         type: 'confirm',
         name: 'react',
-        message: 'Using React (with JSX) (No)',
+        message: 'Using React (with JSX)? (No)',
         default: false
       },{
         when: function(response) {
@@ -58,7 +63,15 @@ module.exports = yeoman.generators.Base.extend({
         },
         type: 'confirm',
         name: 'react_router',
-        message: 'Using react-router (No)',
+        message: 'Using react-router? (No)',
+        default: false
+      },{
+        when: function(response) {
+          return response.react;
+        },
+        type: 'confirm',
+        name: 'redux',
+        message: 'Using redux? (No)',
         default: false
       },{
         type: 'confirm',
@@ -117,8 +130,16 @@ module.exports = yeoman.generators.Base.extend({
         this.react_router = false;
       }
 
+      if(!this.props.redux){
+        this.redux = false;
+      }
+
       if(!this.props.react){
         this.react = false;
+      }
+
+      if(!this.props.test){
+        this.test = false;
       }
 
       for(var prop in this.props){
@@ -150,7 +171,7 @@ module.exports = yeoman.generators.Base.extend({
     app: function(){
 
       var files = [
-        '_js/script.js', '_js/helpers/util.js',
+        '_js/script.js', '_js/modules/util.js',
         '_scss/style.scss', '_scss/_reset.scss', '_scss/_mixins.scss',
       ];
 
@@ -224,6 +245,10 @@ module.exports = yeoman.generators.Base.extend({
 
       }
 
+      if(this.test){
+        fs.mkdir('./test');
+      }
+
       if(this.react){
 
         files.push('./_js/components/index.js');
@@ -234,6 +259,16 @@ module.exports = yeoman.generators.Base.extend({
           files.push('./_js/pages/index.js');
           files.push('./_js/pages/Home.jsx');
         }
+
+        if(this.redux){
+          mkdirp('./_js/actions');
+          mkdirp('./_js/constants');
+          mkdirp('./_js/containers');
+          mkdirp('./_js/reducers');
+          mkdirp('./_js/store');
+        }
+
+
       }
 
       for(var i = 0; i < files.length; i++){
