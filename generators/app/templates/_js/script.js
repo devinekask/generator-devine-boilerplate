@@ -1,5 +1,3 @@
-'use strict';
-
 // some features need the be polyfilled..
 // https://babeljs.io/docs/usage/polyfill/
 

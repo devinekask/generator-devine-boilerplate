@@ -1,10 +1,8 @@
-'use strict';
-
 import React, {Component} from 'react';
 
 import {HelloWorld} from '../components/';
 
-export default class Home extends Component {
+class Home extends Component {
 
   constructor(props, context){
     super(props, context);
@@ -19,3 +17,5 @@ export default class Home extends Component {
   }
 
 }
+
+export default Home;

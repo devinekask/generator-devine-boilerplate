@@ -171,8 +171,8 @@ module.exports = yeoman.generators.Base.extend({
     app: function(){
 
       var files = [
-        '_js/script.js', '_js/modules/util.js',
-        '_scss/style.scss', '_scss/_reset.scss', '_scss/_mixins.scss',
+        '_js/script.js',
+        '_scss/style.scss', '_scss/_reset.scss'
       ];
 
       if(this.hbs_client){

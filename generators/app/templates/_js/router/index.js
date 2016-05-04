@@ -1,15 +1,11 @@
-'use strict';
-
 import React from 'react';
 
-import {Router, Route} from 'react-router';
-import createBrowserHistory from 'history/lib/createBrowserHistory';
+import {Router, Route, browserHistory} from 'react-router';
 
 import {Home} from '../pages/';
 
-const router =
-  <Router history={createBrowserHistory()}>
-    <Route path="/" component={Home} />
-  </Router>;
-
-export default router;
+export default (() => (
+  <Router history={browserHistory}>
+    <Route path='/' component={Home} />
+  </Router>
+))();

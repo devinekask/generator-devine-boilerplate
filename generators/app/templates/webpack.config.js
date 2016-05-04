@@ -1,10 +1,10 @@
 'use strict';
 
-var webpack = require('webpack');
-var ExtractTextPlugin = require('extract-text-webpack-plugin');
-var path = require('path');
+let webpack = require('webpack');
+let ExtractTextPlugin = require('extract-text-webpack-plugin');
+let path = require('path');
 
-var config = require('./_config'); //paths config..
+let config = require('./_config'); //paths config..
 
 module.exports = {
 
@@ -29,7 +29,7 @@ module.exports = {
     loaders: [
 
       {
-        test: /\.<% if (react) { %>(<% } %>js<% if (react) { %>|jsx)<% } %>$/,
+        test: /\.(js|jsx)$/,
         exclude: /node_modules/,
         loader: 'babel',
         query: {
@@ -38,22 +38,10 @@ module.exports = {
       },
 
       {
-        test: /\.<% if (react) { %>(<% } %>js<% if (react) { %>|jsx)<% } %>$/,
+        test: /\.(js|jsx)$/,
         exclude: /node_modules/,
         loader: 'eslint'
-      },<% if (hbs_client) { %>
-
-      {
-        test: /\.(hbs|handlebars)$/,
-        exclude: /node_modules/,
-        loader: 'handlebars',
-        query: {
-          helperDirs: [
-            `${__dirname}/_helpers`<% if (hbs_server) { %>,
-            `${__dirname}/templates/helpers`<% } %>
-          ]
-        }
-      },<% } %>
+      },
 
       {
         test: /\.scss$/,
@@ -90,22 +78,24 @@ module.exports = {
     //extract CSS into seperate file
     new ExtractTextPlugin(
       config.build('css', 'dest')
-    )<% if (react) { %>,
+    ),
 
     //react smaller build
     new webpack.DefinePlugin({
       'process.env': {NODE_ENV: '\'production\''}
-    })<% } %>
+    })
 
   ],
 
   eslint: {
     configFile: path.join(__dirname, '.eslintrc'),
-    ignorePath: path.join(__dirname, '.eslintignore')
+    ignorePath: path.join(__dirname, '.eslintignore'),
+    formatter: require('eslint-formatter-pretty'),
+    fix: true
   },
 
   resolve: {
-    extensions: ['', '.json', '.js', '.css'<% if (react) { %>, '.jsx'<% } %><% if (hbs_client) { %>, '.hbs', '.handlebars'<% } %>],
+    extensions: ['', '.json', '.js', '.css', '.jsx'],
     fallback: path.join(__dirname, 'node_modules')
   },
 

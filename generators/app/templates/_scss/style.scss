@@ -1,18 +1,23 @@
-@import 'mixins';
 @import 'reset';
 
-body {
+html {
   font-size: 62.5%;
   font-family: 'Helvetica neue', Helvetica, Arial, sans-serif;
 }
 
+body {
+  font-size: 1.8rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 main {
-  @include center;
-  padding-top: 30px;
-  width: 960px;
-  font-size: 1.8em;
+  width: 100%;
+  padding: 3rem;
+  max-width: 96rem;
 }
 
 h1 {
-  font-size: 1.3em;
+  font-size: 3rem;
 }

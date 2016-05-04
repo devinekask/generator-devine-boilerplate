@@ -12,52 +12,55 @@
     "serve": "<% if (!node) { %>python -m SimpleHTTPServer<% } else { %>nodemon .<% } %>"
   },
   "devDependencies": {
-    "postcss-cssnext": "^2.1.0",
-    "postcss-will-change": "^1.0.0",
-    "babel-core": "^6.3.15",
-    "babel-eslint": "^4.1.6",
-    "babel-loader": "^6.2.0",
-    "babel-preset-es2015": "^6.3.13",
-    "babel-preset-stage-0": "^6.3.13",<% if (react) { %>
-    "babel-preset-react": "^6.3.13",<% } %>
-    "css-loader": "^0.16.0",
-    "eslint": "^1.7.1",
-    "eslint-loader": "^1.0.0",
-    "extract-text-webpack-plugin": "^0.8.2",<% if (!hbs_server && hbs_client) { %>
-    "handlebars": "^4.0.3",<% } %><% if (hbs_client) { %>
-    "handlebars-loader": "^1.1.1",<% } %>
-    "node-sass": "^3.3.3",
-    "array.from": "^0.2.0",
-    "postcss-loader": "^0.6.0",
-    "sass-loader": "^2.0.1",<% if (test) { %>
-    "mocha": "^2.3.4",
-    "chai": "^3.4.1",<% } %>
-    "style-loader": "^0.12.3",<% if (react) { %>
-    "react": "^0.14.0",
-    "react-dom": "^0.14.0",<% if (react_router) { %>
-    "react-router": "^1.0.2",
-    "history": "^1.15.0",<% } %><% if (redux) { %><% if (react_router) { %>
-    "redux-router": "1.0.0-beta5",<% } %>
-    "redux": "^3.0.4",<% } %>
-    "eslint-plugin-react": "^3.5.1",<% } %>
-    "webpack": "^1.11.0"
+    "postcss-cssnext": "^2.5.2",
+    "postcss-will-change": "^1.1.0",
+    "babel-core": "^6.7.7",
+    "babel-eslint": "^6.0.4",
+    "babel-loader": "^6.2.4",
+    "babel-preset-es2015": "^6.6.0",
+    "babel-preset-stage-0": "^6.5.0",<% if (react) { %>
+    "babel-preset-react": "^6.5.0",<% } %>
+    "css-loader": "^0.23.1",
+    "eslint": "^2.9.0",
+    "eslint-loader": "^1.3.0",
+    "extract-text-webpack-plugin": "^1.0.1",<% if (!hbs_server && hbs_client) { %>
+    "handlebars": "^4.0.5",<% } %><% if (hbs_client) { %>
+    "handlebars-loader": "^1.3.0",<% } %>
+    "node-sass": "^3.7.0",
+    "postcss-loader": "^0.9.1",
+    "sass-loader": "^3.2.0",<% if (test) { %>
+    "mocha": "^2.4.5",
+    "chai": "^3.5.0",<% } %>
+    "style-loader": "^0.13.1",<% if (react) { %>
+    "react": "^15.0.2",
+    "react-dom": "^15.0.2",<% if (react_router) { %>
+    "react-router": "^2.4.0",
+    "history": "^2.1.1",<% } %><% if (redux) { %><% if (react_router) { %>
+    "redux-router": "1.0.0-beta8",<% } %>
+    "redux": "^3.5.2",<% } %>
+    "eslint-plugin-react": "^5.0.1",<% } %><% if (!node) { %>
+    "lodash": "^4.11.2",<% } %>
+    "babel-plugin-lodash": "^2.3.0",
+    "eslint-plugin-babel": "^3.2.0",
+    "eslint-formatter-pretty": "^0.2.2",
+    "webpack": "^1.13.0"
   },<% if (node) { %>
   "engines": {
-    "node": "4.x.x",
+    "node": "5.x.x",
     "npm": "3.x.x"
   },
   "dependencies": {<% if (hbs_server) { %>
-    "handlebars": "^3.0.3",<% } %><% if (heroku) { %>
+    "handlebars": "^4.0.5",<% } %><% if (heroku) { %>
     "forever": "^0.15.1",<% } %>
-    "hapi": "^10.0.1",
-    "inert": "^3.0.1",<% if (hbs_server) { %>
-    "vision": "^3.0.0",<% } %><% if (mongoose) { %>
-    "mongoose": "^4.2.3",<% } %>
-    "dotenv": "^1.2.0",
-    "lodash": "^3.10.1"<% if (hbs_server) { %>,
-    "joi": "^6.7.1",
+    "hapi": "^13.3.0",
+    "inert": "^3.2.1",<% if (hbs_server) { %>
+    "vision": "^4.1.0",<% } %><% if (mongoose) { %>
+    "mongoose": "^4.4.14",<% } %>
+    "dotenv": "^2.0.0",
+    "lodash": "^4.11.2"<% if (hbs_server) { %>,
+    "joi": "^8.0.5",
     "joi-objectid": "^2.0.0",
-    "yar": "^4.2.0"<% } %>
+    "yar": "^7.0.0"<% } %>
   },<% } %>
   "license": "MIT"
 }

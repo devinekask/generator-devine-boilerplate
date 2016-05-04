@@ -28,10 +28,10 @@ To install generator-devine-project from npm, run:
 npm install -g generator-devine-project
 ```
 
-Make sure you have nodemon, gulp, forever, webpack, babel and eslint installed as global modules
+Make sure you have nodemon, forever, webpack, babel and eslint installed as global modules
 
 ```bash
-npm install -g nodemon gulp forever webpack babel eslint
+npm install -g nodemon forever webpack babel eslint
 ```
 
 Finally, initiate the generator:

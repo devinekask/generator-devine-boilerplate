@@ -1,12 +1,6 @@
-'use strict';
-
 import React, {Component, PropTypes} from 'react';
 
-export default class HelloWorld extends Component {
-
-  static propTypes = {
-    author: PropTypes.string
-  }
+class HelloWorld extends Component {
 
   constructor(props, context){
     super(props, context);
@@ -22,3 +16,9 @@ export default class HelloWorld extends Component {
   }
 
 }
+
+HelloWorld.propTypes = {
+  author: PropTypes.string
+};
+
+export default HelloWorld;
