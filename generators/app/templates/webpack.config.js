@@ -6,6 +6,14 @@ let path = require('path');
 
 let config = require('./_config'); //paths config..
 
+let NODE_ENV = '\'development\'';
+
+process.argv.forEach(arg => {
+  if(arg === '-p' || arg === '-d'){
+    NODE_ENV = '\'production\'';
+  }
+});
+
 module.exports = {
 
   entry: [
@@ -82,7 +90,7 @@ module.exports = {
 
     //react smaller build
     new webpack.DefinePlugin({
-      'process.env': {NODE_ENV: '\'production\''}
+      'process.env': {NODE_ENV: NODE_ENV}
     })
 
   ],
