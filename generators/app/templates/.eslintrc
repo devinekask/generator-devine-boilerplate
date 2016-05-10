@@ -45,6 +45,7 @@
     "arrow-spacing": "error",
     "object-curly-spacing": ["off", "never"],
     "key-spacing": "error",
+    "comma-spacing": ["error", { "before": false, "after": true }],
     "comma-style": ["error", "last"]
   }
 
