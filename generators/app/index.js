@@ -281,7 +281,7 @@ module.exports = yeoman.generators.Base.extend({
 
       var files = [
         '.babelrc', '.editorconfig',
-        '.eslintrc', '.eslintignore',
+        '.eslintignore',
         '_config.js', 'webpack.config.js',
         'package.json',
         'README.md', 'LICENSE'
@@ -299,6 +299,15 @@ module.exports = yeoman.generators.Base.extend({
       for(var i = 0; i < files.length; i++){
         this._copy(files[i]);
       }
+
+      this.fs.copyTpl(
+        this.templatePath('_.eslintrc'),
+        this.destinationPath('.eslintrc'),
+        this,
+        {
+          interpolate: /<%=([\s\S]+?)%>/g
+        }
+      );
 
       if(this.git){
 
