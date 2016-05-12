@@ -1,21 +1,16 @@
-import React, {Component, PropTypes} from 'react';
+import React from 'react';
 
-class HelloWorld extends Component {
+const HelloWorld = props => {
 
-  constructor(props, context){
-    super(props, context);
-  }
+  let {author} = props;
 
-  render() {
-    let {author} = this.props;
-    return (
-      <header>
-        <h1>Hello {author}</h1>
-      </header>
-    );
-  }
+  return (
+    <header>
+      <h1>Hello {author}</h1>
+    </header>
+  );
 
-}
+};
 
 HelloWorld.propTypes = {
   author: PropTypes.string
