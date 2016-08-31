@@ -32,8 +32,8 @@
     "mocha": "^2.4.5",
     "chai": "^3.5.0",<% } %>
     "style-loader": "^0.13.1",<% if (react) { %>
-    "react": "^15.0.2",
-    "react-dom": "^15.0.2",<% if (react_router) { %>
+    "react": "^15.3.1",
+    "react-dom": "^15.3.1",<% if (react_router) { %>
     "react-router": "^2.4.0",
     "history": "^2.1.1",<% } %><% if (redux) { %><% if (react_router) { %>
     "redux-router": "1.0.0-beta8",<% } %>
