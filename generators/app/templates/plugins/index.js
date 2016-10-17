@@ -1,7 +1,5 @@
-'use strict';
-
-let fs = require('fs');
-let validateFileName = require('../modules/validateFileName');
+const fs = require('fs');
+const validateFileName = require('../modules/validateFileName');
 
 const pluginHandler = err => {
   if(err) console.error(err);

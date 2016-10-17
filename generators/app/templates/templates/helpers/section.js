@@ -1,5 +1,3 @@
-'use strict';
-
 module.exports = function(name, options){
 
   if(!this._sections){
