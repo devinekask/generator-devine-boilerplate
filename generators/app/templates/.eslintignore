@@ -1,0 +1,1 @@
+<% if (node) { %>/server/public/*<% } else { %>/dist/*<% } %>

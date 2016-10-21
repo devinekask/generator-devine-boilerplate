@@ -1,4 +1,4 @@
-const yeoman = require(`yeoman-generator`);
+const Base = require(`yeoman-generator`).Base;
 const chalk = require(`chalk`);
 const yosay = require(`yosay`);
 const path = require(`path`);
@@ -9,7 +9,7 @@ const mkdirp = require(`mkdirp`);
 const spawn = require(`child_process`).spawnSync;
 const exec = require(`child_process`).execSync;
 
-module.exports = yeoman.generators.Base.extend({
+module.exports = Base.extend({
 
   prompting: () => {
 
@@ -40,15 +40,9 @@ module.exports = yeoman.generators.Base.extend({
       }, {
         type: `confirm`,
         name: `test`,
-        message: `Need testing (Mocha & Chai)? (Yes)`,
+        message: `Need testing (Jest)? (Yes)`,
         default: true
       }, {
-        type: `confirm`,
-        name: `hbsClient`,
-        message: `Do you need templates on the client (Handlebars)? (No)`,
-        default: false
-      }, {
-        when: response => !response.hbsClient,
         type: `confirm`,
         name: `react`,
         message: `Using React (with JSX)? (No)`,
@@ -57,31 +51,19 @@ module.exports = yeoman.generators.Base.extend({
         when: response => response.react,
         type: `confirm`,
         name: `reactRouter`,
-        message: `Using react-router? (No)`,
+        message: `Using React-Router? (No)`,
         default: false
       }, {
         when: response => response.react,
         type: `confirm`,
         name: `redux`,
-        message: `Using redux? (No)`,
+        message: `Using Redux? (No)`,
         default: false
       }, {
         type: `confirm`,
         name: `node`,
         message: `Do you need a Node server (Hapi)? (Yes)`,
         default: true
-      }, {
-        when: response => response.node,
-        type: `confirm`,
-        name: `hbsServer`,
-        message: `Do you need templates on the server (Handlebars)? (No)`,
-        default: false
-      }, {
-        when: response => response.node,
-        type: `confirm`,
-        name: `mongoose`,
-        message: `Using MongoDB (Mongoose)? (No)`,
-        default: false
       }, {
         when: response => response.node,
         type: `confirm`,
@@ -100,16 +82,8 @@ module.exports = yeoman.generators.Base.extend({
 
       this.props = props;
 
-      if(!this.props.hbsServer){
-        this.hbsServer = false;
-      }
-
       if(!this.props.heroku){
         this.heroku = false;
-      }
-
-      if(!this.props.mongoose){
-        this.mongoose = false;
       }
 
       if(!this.props.reactRouter){
