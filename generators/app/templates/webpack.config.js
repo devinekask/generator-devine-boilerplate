@@ -3,7 +3,8 @@
 
 const path = require(`path`);
 
-const webpack = require(`webpack`);
+const webpack = require(`webpack`);<% if (!node) { %>
+const {HotModuleReplacementPlugin} = webpack;<% } %>
 const {UglifyJsPlugin} = webpack.optimize;
 
 const CopyWebpackPlugin = require(`copy-webpack-plugin`);
@@ -13,7 +14,9 @@ const configHtmls = require(`webpack-config-htmls`)();
 const extractCSS = new ExtractTextWebpackPlugin(`css/style.css`);
 
 // change for production build on different server path
-const publicPath = `/`;
+const publicPath = `/`;<% if (!node) { %>
+
+const port = 3000;<% } %>
 
 // hard copy assets folder for:
 // - srcset images (not loaded through html-loader )
@@ -28,10 +31,10 @@ const copy = new CopyWebpackPlugin([{
 });
 
 const config = {
-
-  // no HTML entry points for production build (bundled in JavaScript)
-  entry: [
-    require.resolve(`react-dev-utils/webpackHotDevClient`),
+  <% if (!node) { %>
+  // no HTML entry points for production build (bundled in JavaScript)<% } %>
+  entry: [<% if (!node) { %>
+    require.resolve(`react-dev-utils/webpackHotDevClient`),<% } %>
     `./src/css/style.css`,
     `./src/js/script.js`
   ],
@@ -47,14 +50,21 @@ const config = {
     publicPath
   },
 
-  devtool: `sourcemap`,
+  devtool: `sourcemap`,<% if (!node) { %>
+
+  devServer: {
+    contentBase: `./src`,
+    historyApiFallback: true, // for use with client side router
+    hot: true,
+    port
+  },<% } %>
 
   module: {
 
     rules: [
       {
-        test: /\.css$/,<% if (node) { %>
-        loader: extractCSS.extract([
+        test: /\.css$/,
+        <% if (node) { %>loader<% } else { %>use<% } %>: <% if (node) { %>extractCSS.extract(<% } %>[
           {
             loader: `css`,
             options: {
@@ -64,8 +74,7 @@ const config = {
           {
             loader: `postcss`
           }
-        ])<% } else { %>
-        <% } %>
+        ]<% if (node) { %>)<% } %>
       },
       {
         test: /\.html$/,
@@ -115,14 +124,35 @@ const config = {
 
   },
 
-  plugins: [
-    extractCSS,<% if (node) { %>
-    copy
-  <% } %>]
+  plugins: [<% if (node) { %>
+    extractCSS,
+    copy<% } else { %>
+    new HotModuleReplacementPlugin()<% } %>
+  ]
 
 };
 
-if(process.env.NODE_ENV === `production`){
+if(process.env.NODE_ENV === `production`){<% if (!node) { %>
+
+  //remove hot reloading client
+  config.entry.shift();
+
+  //remove CSS rule and add new one, css in external file
+  config.module.rules.shift();
+  config.module.rules.push({
+    test: /\.css$/,
+    loader: extractCSS.extract([
+      {
+        loader: `css`,
+        options: {
+          importLoaders: 1
+        }
+      },
+      {
+        loader: `postcss`
+      }
+    ])
+  });<% } %>
 
   //image optimizing
   config.module.rules.push({
@@ -131,15 +161,23 @@ if(process.env.NODE_ENV === `production`){
     enforce: `pre`
   });
 
-  config.plugins = [
-    ...config.plugins,
+  config.plugins = [<% if (node) { %>
+    ...config.plugins<% } else { %>
+    extractCSS,
+    copy<% } %>,
     new UglifyJsPlugin({
       sourceMap: true, // false returns errors.. -p + plugin conflict
       comments: false
     })
   ];
 
-}
+}<% if (!node) { %>else{
+
+  // only include HTMLs in NODE_ENV=development
+  // for Hot Reloading
+  config.entry = [...config.entry, ...configHtmls.entry];
+
+}<% } %>
 
 config.plugins = [...config.plugins, ...configHtmls.plugins];
 
