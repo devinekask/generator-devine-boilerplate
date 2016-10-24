@@ -18,7 +18,7 @@
     "forever": "^0.15.2",
     "lodash": "^4.16.4",
     "hapi": "^15.1.1",
-    "inert": "^4.0.2",<% if (mongo) { %>
+    "inert": "^4.0.2"<% if (mongo) { %>,
     "mongoose": "^4.6.5"<% } %><% if (jwt) { %>,
     "mongoose-bcrypt": "^1.4.2",
     "jsonwebtoken": "^7.1.9"<% } %>
