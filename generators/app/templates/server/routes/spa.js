@@ -1,6 +1,6 @@
 module.exports = [
 
-  <% if (reactRouter) { %>{
+  {
     method: `GET`,
     path: `/{param*}`,
     handler: {
@@ -36,17 +36,6 @@ module.exports = [
         path: `./assets`
       }
     }
-  }<% } else { %>
-  {
-    method: `GET`,
-    path: `/{param*}`,
-    handler: {
-      directory: {
-        path: `.`,
-        redirectToSlash: true,
-        index: true
-      }
-    }
-  }<% } %>
+  }
 
 ];

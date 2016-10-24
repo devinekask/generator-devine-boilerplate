@@ -65,7 +65,8 @@ const config = {
       {
         test: /\.css$/,
         <% if (node) { %>loader<% } else { %>use<% } %>: <% if (node) { %>extractCSS.extract(<% } %>[
-          {
+          <% if (!node) { %>`style`,
+          <% } %>{
             loader: `css`,
             options: {
               importLoaders: 1

@@ -1,18 +1,20 @@
-import React from 'react';
+import React from 'react';<% if(reactRouter) { %>
 import {Match, BrowserRouter as Router} from 'react-router';
 
-import Home from './Home';
+import {Home} from '../pages/';<% } %>
 
 const App = () => {
   return (
-    <Router>
+    <% if(!reactRouter) { %><header>
+      <h1>Hello Boilerplate</h1>
+    </header><% } else { %><Router>
       <main>
         <Match
           exactly pattern='/'
           render={Home}
         />
       </main>
-    </Router>
+    </Router><% } %>
   );
 };
 

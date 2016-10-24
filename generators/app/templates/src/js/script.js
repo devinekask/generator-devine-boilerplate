@@ -1,14 +1,14 @@
-import React from 'react';
+<% if(react) { %>import React from 'react';
 import {render} from 'react-dom';
+import {App} from './containers/';
 
-import App from './pages/App';
+<% } %>const init = () => {
 
-const init = () => {
-
-  render(
+  <% if(react) { %>render(
     <App />,
     document.querySelector(`.container`)
-  );
+  );<% } else { %>
+  console.log('Hello Boilerplate')<% } %>
 
 };
 

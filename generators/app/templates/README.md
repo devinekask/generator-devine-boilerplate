@@ -1,1 +1,1 @@
-# Devine Boilerplate Project
+# <%= name %>

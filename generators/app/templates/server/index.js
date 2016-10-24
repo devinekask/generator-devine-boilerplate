@@ -1,7 +1,7 @@
 const path = require(`path`);
 const pluginHandler = require(`./lib/pluginHandler`);
 
-require(`dotenv`).load();
+require(`dotenv`).load({silent: true});
 
 const Server = require(`hapi`).Server;
 
@@ -21,8 +21,8 @@ server.connection({port});
 
 server.register(require(`inert`), pluginHandler);
 
-server.register(require(`./routes/`), pluginHandler);
 server.register(require(`./plugins/`), pluginHandler);
+server.register(require(`./routes/`), pluginHandler);
 
 server.start(err => {
   if(err) console.error(err);

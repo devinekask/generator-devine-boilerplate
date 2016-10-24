@@ -2,18 +2,30 @@ const generator = require(`yeoman-generator`);
 
 const spawn = require(`child_process`).spawnSync;
 
+const mkdir = require(`mkdirp`);
+
 module.exports = generator.Base.extend({
 
-  _copy(file){
-    console.log(this.props);
+  _copyFile(f){
     this.fs.copyTpl(
-      this.templatePath(file),
-      this.destinationPath(file),
-      this.props
+      this.templatePath(f),
+      this.destinationPath(f),
+      this.props,
+      {
+        interpolate: /<%=([\s\S]+?)%>/g
+      }
     );
   },
 
+  _createDir(d){
+    mkdir(d, e => {
+      if(e) console.error(e);
+    });
+  },
+
   initializing(){
+
+    const nodeVersion = require(`node-version`).long;
 
     this.props = {
 
@@ -22,10 +34,16 @@ module.exports = generator.Base.extend({
       reactRouter: false,
 
       node: false,
-      mongoose: false,
+      mongo: false,
       heroku: false,
 
-      jest: false
+      jest: false,
+      api: false,
+      jwt: false,
+
+      nodeVersion,
+
+      secret: Math.random().toString(36).substring(5) + Math.random().toString(36).substring(5)
 
     };
 
@@ -42,7 +60,7 @@ module.exports = generator.Base.extend({
       type: `confirm`,
       name: `react`,
       default: false,
-      message: `Do you need a React? (No)`
+      message: `Do you need React? (No)`
     }, {
       when: r => r.react,
       type: `confirm`,
@@ -63,15 +81,27 @@ module.exports = generator.Base.extend({
     }, {
       when: r => r.node,
       type: `confirm`,
-      name: `mongoose`,
+      name: `mongo`,
       default: false,
       message: `with MongoDB? (Mongoose) (No)`
+    }, {
+      when: r => r.mongo,
+      type: `confirm`,
+      name: `api`,
+      default: false,
+      message: `Do you need an API? (No)`
+    }, {
+      when: r => r.api,
+      type: `confirm`,
+      name: `jwt`,
+      default: false,
+      message: `with authentication? (JWT)? (No)`
     }, {
       when: r => r.node,
       type: `confirm`,
       name: `heroku`,
-      default: true,
-      message: `ready for deployment to Heroku? (Yes)`
+      default: false,
+      message: `ready for deployment to Heroku? (No)`
     }, {
       type: `confirm`,
       name: `jest`,
@@ -85,7 +115,243 @@ module.exports = generator.Base.extend({
 
   writing: {
 
-    app(){
+    appFiles(){
+
+      const css = [
+        `src/css/reset.css`,
+        `src/css/style.css`
+      ];
+
+      const js = [
+        `src/js/script.js`
+      ];
+
+      const html = [
+        `src/index.html`
+      ];
+
+      let files = [
+        ...css,
+        ...html,
+        ...js
+      ];
+
+      const react = [
+        `src/js/containers/App.jsx`,
+        `src/js/containers/index.js`
+      ];
+
+      const reactRouter = [
+        `src/js/pages/Home.jsx`,
+        `src/js/pages/index.js`
+      ];
+
+      const redux = [
+        `src/js/store/index.js`
+      ];
+
+      const node = [
+
+        `server/lib/pluginHandler.js`,
+        `server/lib/isValidName.js`,
+
+        `server/plugins/index.js`,
+        `server/routes/index.js`,
+
+        `server/index.js`
+
+      ];
+
+      const reactRouterNode = [
+        `server/routes/spa.js`
+      ];
+
+      const noReactRouterNode = [
+        `server/routes/static.js`
+      ];
+
+      const mongo = [
+        `server/plugins/mongoose.js`
+      ];
+
+      const api = [
+        `server/routes/api.js`
+      ];
+
+      const jwt = [
+        `server/plugins/jwt.js`,
+        `server/routes/auth.js`,
+        `server/const/Roles.js`,
+        `server/models/User.js`
+      ];
+
+      if(this.props.react){
+
+        files = [
+          ...files,
+          ...react
+        ];
+
+        if(this.props.reactRouter){
+
+          files = [
+            ...files,
+            ...reactRouter
+          ];
+
+        }
+
+        if(this.props.redux){
+
+          files = [
+            ...files,
+            ...redux
+          ];
+
+        }
+
+      }
+
+      if(this.props.node){
+
+        files = [
+          ...files,
+          ...node
+        ];
+
+        if(this.props.mongo){
+
+          files = [
+            ...files,
+            ...mongo
+          ];
+
+          if(this.props.api){
+
+            files = [
+              ...files,
+              ...api
+            ];
+
+            if(this.props.jwt){
+
+              files = [
+                ...files,
+                ...jwt
+              ];
+
+            }
+
+          }
+
+        }
+
+        if(this.props.reactRouter){
+
+          files = [
+            ...files,
+            ...reactRouterNode
+          ];
+
+        }else{
+
+          files = [
+            ...files,
+            ...noReactRouterNode
+          ];
+
+        }
+
+      }
+
+      files.forEach(f => this._copyFile(f));
+
+    },
+
+    appDirs(){
+
+      let dirs = [];
+
+      const node = [
+        `server/public`
+      ];
+
+      const noNode = [
+        `dist`
+      ];
+
+      const react = [
+        `src/js/components`
+      ];
+
+      const redux = [
+        `src/js/actions`,
+        `src/js/constants`,
+        `src/js/reducers`
+      ];
+
+      const jest = [
+        `__tests__`
+      ];
+
+      const mongo = [
+        `server/models`
+      ];
+
+      if(this.props.node){
+
+        dirs = [
+          ...dirs,
+          ...node
+        ];
+
+        if(this.props.mongo){
+
+          dirs = [
+            ...dirs,
+            ...mongo
+          ];
+
+
+        }
+
+      }else{
+
+        dirs = [
+          ...dirs,
+          ...noNode
+        ];
+
+      }
+
+      if(this.props.react){
+
+        dirs = [
+          ...dirs,
+          ...react
+        ];
+
+        if(this.props.redux){
+
+          dirs = [
+            ...dirs,
+            ...redux
+          ];
+
+        }
+
+      }
+
+      if(this.props.jest){
+
+        dirs = [
+          ...dirs,
+          ...jest
+        ];
+
+      }
+
+      dirs.forEach(d => this._createDir(d));
 
     },
 
@@ -138,11 +404,14 @@ module.exports = generator.Base.extend({
           `nodemon.json`,
         ];
 
-        files = [...files, ...node];
+        files = [
+          ...files,
+          ...node
+        ];
 
       }
 
-      files.forEach(f => this._copy(f));
+      files.forEach(f => this._copyFile(f));
 
     }
 
@@ -152,8 +421,18 @@ module.exports = generator.Base.extend({
 
     spawn(`git`, [`init`], {stdio: `inherit`});
 
+    spawn(`yarn`, [], {stdio: `inherit`});
+
     spawn(`git`, [`add`, `.`], {stdio: `inherit`});
     spawn(`git`, [`commit`, `-m`, `"initial commit"`], {stdio: `inherit`});
+
+    if(this.props.heroku){
+      spawn(`heroku`, [`create`], {stdio: `inherit`});
+      spawn(`heroku`, [`buildpacks:set`, `https://github.com/heroku/heroku-buildpack-nodejs#yarn`], {stdio: `inherit`});
+    }
+
+    spawn(`yarn`, [`run`, `development`], {stdio: `inherit`});
+
 
   }
 

@@ -5,9 +5,11 @@ const isValidName = require(`../lib/isValidName`);
 
 module.exports.register = (server, options, next) => {
 
-  fs.readdirSync(__dirname).forEach(file => {
-    if(!isValidName(file)) return;
-    server.register(require(`./${  file}`), pluginHandler);
+  fs.readdirSync(__dirname).forEach(f => {
+
+    if(!isValidName(f)) return;
+    server.register(require(`./${f}`), pluginHandler);
+
   });
 
   next();
