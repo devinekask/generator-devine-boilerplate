@@ -11,15 +11,14 @@ mongoose.connect(MONGO_URL);
 
 module.exports.register = (server, options, next) => {
 
-  const base = path.resolve(__dirname, `..`, `models`);
+  const base = path.resolve(__dirname, `models`);
 
   fs.readdirSync(base).forEach(f => {
 
     if(!isValidName(f)) return;
 
-    const name = path.basename(f, `.js`);
     const ff = path.resolve(base, f);
-    const schema = require(ff);
+    const {schema, name = path.basename(f, `.js`)} = require(ff);
 
     mongoose.model(name, schema);
 

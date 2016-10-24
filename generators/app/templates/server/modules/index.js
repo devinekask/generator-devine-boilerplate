@@ -1,8 +1,8 @@
 const fs = require(`fs`);
 const path = require(`path`);
 
-const pluginHandler = require(`../lib/pluginHandler`);
-const isValidName = require(`../lib/isValidName`);
+const pluginHandler = require(`../../lib/pluginHandler`);
+const isValidName = require(`../../lib/isValidName`);
 
 module.exports.register = (server, options, next) => {
 

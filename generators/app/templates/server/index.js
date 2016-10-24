@@ -21,7 +21,7 @@ server.connection({port});
 
 server.register(require(`inert`), pluginHandler);
 
-server.register(require(`./plugins/`), pluginHandler);
+server.register(require(`./modules/`), pluginHandler);
 server.register(require(`./routes/`), pluginHandler);
 
 server.start(err => {

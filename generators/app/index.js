@@ -155,7 +155,7 @@ module.exports = generator.Base.extend({
         `server/lib/pluginHandler.js`,
         `server/lib/isValidName.js`,
 
-        `server/plugins/index.js`,
+        `server/modules/index.js`,
         `server/routes/index.js`,
 
         `server/index.js`
@@ -171,7 +171,7 @@ module.exports = generator.Base.extend({
       ];
 
       const mongo = [
-        `server/plugins/mongoose.js`
+        `server/modules/mongoose/index.js`
       ];
 
       const api = [
@@ -179,10 +179,13 @@ module.exports = generator.Base.extend({
       ];
 
       const jwt = [
-        `server/plugins/jwt.js`,
+
+        `server/modules/jwt.js`,
+        `server/modules/mongoose/const/Roles.js`,
+        `server/modules/mongoose/models/User.js`,
+
         `server/routes/auth.js`,
-        `server/const/Roles.js`,
-        `server/models/User.js`
+        
       ];
 
       if(this.props.react){
@@ -295,7 +298,7 @@ module.exports = generator.Base.extend({
       ];
 
       const mongo = [
-        `server/models`
+        `server/modules/mongoose/models`
       ];
 
       if(this.props.node){
@@ -305,7 +308,7 @@ module.exports = generator.Base.extend({
           ...node
         ];
 
-        if(this.props.mongo){
+        if(this.props.mongo && !this.props.jwt){
 
           dirs = [
             ...dirs,
