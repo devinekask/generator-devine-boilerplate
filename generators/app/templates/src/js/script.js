@@ -7,8 +7,7 @@ import {App} from './containers/';
   <% if(react) { %>render(
     <App />,
     document.querySelector(`.container`)
-  );<% } else { %>
-  console.log('Hello Boilerplate')<% } %>
+  );<% } else { %>console.log('Hello Boilerplate')<% } %>
 
 };
 

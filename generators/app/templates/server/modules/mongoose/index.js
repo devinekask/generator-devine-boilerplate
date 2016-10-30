@@ -1,7 +1,7 @@
 const path = require(`path`);
 const fs = require(`fs`);
 
-const isValidName = require(`../lib/isValidName`);
+const isValidName = require(`../../lib/isValidName`);
 const {MONGO_URL} = process.env;
 
 const mongoose = require(`mongoose`);

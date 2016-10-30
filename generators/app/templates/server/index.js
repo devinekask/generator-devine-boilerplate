@@ -3,9 +3,9 @@ const pluginHandler = require(`./lib/pluginHandler`);
 
 require(`dotenv`).load({silent: true});
 
-const Server = require(`hapi`).Server;
+const {PORT: port} = process.env;
 
-const port = process.env.PORT || 3000;
+const Server = require(`hapi`).Server;
 
 const server = new Server({
   connections: {
@@ -18,8 +18,6 @@ const server = new Server({
 });
 
 server.connection({port});
-
-server.register(require(`inert`), pluginHandler);
 
 server.register(require(`./modules/`), pluginHandler);
 server.register(require(`./routes/`), pluginHandler);

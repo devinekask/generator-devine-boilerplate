@@ -163,29 +163,28 @@ module.exports = generator.Base.extend({
       ];
 
       const reactRouterNode = [
-        `server/routes/spa.js`
+        `server/routes/static/spa.js`
       ];
 
       const noReactRouterNode = [
-        `server/routes/static.js`
+        `server/routes/static/public.js`
       ];
 
       const mongo = [
         `server/modules/mongoose/index.js`
       ];
 
-      const api = [
-        `server/routes/api.js`
-      ];
-
       const jwt = [
 
-        `server/modules/jwt.js`,
-        `server/modules/mongoose/const/Roles.js`,
+        `server/modules/token/index.js`,
+
+        `server/modules/mongoose/const/Scopes.js`,
         `server/modules/mongoose/models/User.js`,
 
-        `server/routes/auth.js`,
-        
+        `server/routes/api/auth.js`,
+        `server/routes/api/users.js`,
+        `server/routes/api/test.js`
+
       ];
 
       if(this.props.react){
@@ -231,11 +230,6 @@ module.exports = generator.Base.extend({
 
           if(this.props.api){
 
-            files = [
-              ...files,
-              ...api
-            ];
-
             if(this.props.jwt){
 
               files = [
@@ -276,7 +270,8 @@ module.exports = generator.Base.extend({
       let dirs = [];
 
       const node = [
-        `server/public`
+        `server/public`,
+        `server/uploads`
       ];
 
       const noNode = [
@@ -301,7 +296,20 @@ module.exports = generator.Base.extend({
         `server/modules/mongoose/models`
       ];
 
+      const api = [
+        `server/routes/api`
+      ];
+
       if(this.props.node){
+
+        if(this.props.api){
+
+          dirs = [
+            ...dirs,
+            ...api
+          ];
+
+        }
 
         dirs = [
           ...dirs,

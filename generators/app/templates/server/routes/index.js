@@ -1,20 +1,20 @@
-const fs = require(`fs`);
 const path = require(`path`);
-
-const isValidName = require(`../lib/isValidName`);
+const glob = require(`glob`);
 
 module.exports.register = (server, options, next) => {
 
-  fs.readdirSync(__dirname).forEach(file => {
+  const g = path.join(__dirname, `**/*.js`);
 
-    if(!isValidName(file)) return;
+  glob(g, {ignore: [`**/*/index.js`, `**/*/_*.js`]}, (err, files) => {
 
-    const mod = {};
-    mod[path.basename(file, `.js`)] = require(path.join(__dirname, file));
+    files.forEach(f => {
 
-    for(const route in mod) {
-      server.route(mod[route]);
-    }
+      const mod = {};
+      mod[path.basename(f, `.js`)] = require(f);
+
+      for(const route in mod) server.route(mod[route]);
+
+    });
 
   });
 

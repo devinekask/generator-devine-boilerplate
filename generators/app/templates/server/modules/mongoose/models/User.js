@@ -1,6 +1,6 @@
 const Schema = require(`mongoose`).Schema;
 
-const Roles = require(`../const/Roles`);
+const Scopes = require(`../const/Scopes`);
 
 const schema = new Schema({
 
@@ -22,6 +22,11 @@ const schema = new Schema({
     unique: true
   },
 
+  scope: {
+    type: String,
+    default: Scopes.USER
+  },
+
   isActive: {
     type: Boolean,
     default: true
@@ -30,11 +35,6 @@ const schema = new Schema({
   created: {
     type: Date,
     default: Date.now
-  },
-
-  role: {
-    type: String,
-    default: Roles.USER
   }
 
 });
