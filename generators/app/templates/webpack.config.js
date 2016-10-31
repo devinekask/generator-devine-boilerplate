@@ -50,7 +50,7 @@ const config = {
     publicPath
   },
 
-  devtool: `sourcemap`,<% if (!node) { %>
+  devtool: `source-map`,<% if (!node) { %>
 
   devServer: {
     contentBase: `./src`,
