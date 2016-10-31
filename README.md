@@ -28,19 +28,19 @@ yo devine-project
 
 
 ```bash
-yarn run development
+npm run development
 ```
 
 ```bash
-yarn run production
+npm run production
 ```
 
 ```bash
-yarn run serve
+npm run serve
 ```
 
 ```bash
-yarn run clean
+npm run clean
 ```
 
 
