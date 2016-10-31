@@ -442,7 +442,7 @@ module.exports = generator.Base.extend({
       spawn(`heroku`, [`buildpacks:set`, `https://github.com/heroku/heroku-buildpack-nodejs#yarn`], {stdio: `inherit`});
     }
 
-    spawn(`yarn`, [`run`, `development`], {stdio: `inherit`});
+    spawn(`npm`, [`run`, `development`], {stdio: `inherit`});
 
 
   }
