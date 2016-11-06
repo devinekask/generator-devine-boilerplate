@@ -1,7 +1,7 @@
 # generator-devine-project
 
 [![npm version](https://badge.fury.io/js/generator-devine-project.svg)](https://badge.fury.io/js/generator-devine-project)
-[![dependencies Status](https://david-dm.org/duivvv/generator-devine-project/status.svg)](https://david-dm.org/duivvv/generator-devine-project)
+[![dependencies Status](https://david-dm.org/devinehowest/generator-devine-project/status.svg)](https://david-dm.org/devinehowest/generator-devine-project)
 
 > [Yeoman](http://yeoman.io) generates Boilerplate projects for you.
 
