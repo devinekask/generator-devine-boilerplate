@@ -52,7 +52,7 @@ module.exports = generator.Base.extend({
       api: false,
       jwt: false,
 
-      yarn: false,
+      yarn: true,
 
       nodeVersion: process.version.split(`v`)[1],
 
