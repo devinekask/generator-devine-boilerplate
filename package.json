@@ -20,7 +20,7 @@
   ],
   "devDependencies": {
     "eslint": "^3.8.0",
-    "eslint-config-devine": "^1.0.2"
+    "eslint-config-devine": "^1.2.0"
   },
   "dependencies": {
     "chalk": "^1.1.3",

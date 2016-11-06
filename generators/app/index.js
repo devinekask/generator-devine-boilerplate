@@ -1,12 +1,15 @@
 const generator = require(`yeoman-generator`);
 
-const spawn = require(`child_process`).spawnSync;
+const {
+  spawnSync: spawn,
+  execSync: exec
+} = require(`child_process`);
 
 const mkdir = require(`mkdirp`);
 
 module.exports = generator.Base.extend({
 
-  _spawn(cmd){
+  _spawn(cmd) {
 
     const parts = cmd.split(` `);
     const [first, ...rest] = parts;
@@ -15,7 +18,7 @@ module.exports = generator.Base.extend({
 
   },
 
-  _copyFile(f){
+  _copyFile(f) {
 
     this.fs.copyTpl(
       this.templatePath(f),
@@ -28,15 +31,15 @@ module.exports = generator.Base.extend({
 
   },
 
-  _createDir(d){
+  _createDir(d) {
 
     mkdir(d, e => {
-      if(e) console.error(e);
+      if (e) console.error(e);
     });
 
   },
 
-  initializing(){
+  initializing() {
 
     this.props = {
 
@@ -61,13 +64,14 @@ module.exports = generator.Base.extend({
     };
 
     try {
-      require(`child_process`).execSync(`yarn --version >/dev/null 2>&1`, {encoding: `utf8`});
+      exec(`yarn --version >/dev/null 2>&1`, {encoding: `utf8`});
     } catch (e) {
       this.props.yarn = false;
     }
+
   },
 
-  prompting(){
+  prompting() {
 
     return this.prompt([{
       type: `input`,
@@ -133,7 +137,7 @@ module.exports = generator.Base.extend({
 
   writing: {
 
-    appFiles(){
+    appFiles() {
 
       const css = [
         `src/css/reset.css`,
@@ -205,14 +209,14 @@ module.exports = generator.Base.extend({
 
       ];
 
-      if(this.props.react){
+      if (this.props.react) {
 
         files = [
           ...files,
           ...react
         ];
 
-        if(this.props.reactRouter){
+        if (this.props.reactRouter) {
 
           files = [
             ...files,
@@ -221,7 +225,7 @@ module.exports = generator.Base.extend({
 
         }
 
-        if(this.props.redux){
+        if (this.props.redux) {
 
           files = [
             ...files,
@@ -232,23 +236,23 @@ module.exports = generator.Base.extend({
 
       }
 
-      if(this.props.node){
+      if (this.props.node) {
 
         files = [
           ...files,
           ...node
         ];
 
-        if(this.props.mongo){
+        if (this.props.mongo) {
 
           files = [
             ...files,
             ...mongo
           ];
 
-          if(this.props.api){
+          if (this.props.api) {
 
-            if(this.props.jwt){
+            if (this.props.jwt) {
 
               files = [
                 ...files,
@@ -261,14 +265,14 @@ module.exports = generator.Base.extend({
 
         }
 
-        if(this.props.reactRouter){
+        if (this.props.reactRouter) {
 
           files = [
             ...files,
             ...reactRouterNode
           ];
 
-        }else{
+        } else {
 
           files = [
             ...files,
@@ -283,7 +287,7 @@ module.exports = generator.Base.extend({
 
     },
 
-    appDirs(){
+    appDirs() {
 
       let dirs = [];
 
@@ -318,9 +322,9 @@ module.exports = generator.Base.extend({
         `server/routes/api`
       ];
 
-      if(this.props.node){
+      if (this.props.node) {
 
-        if(this.props.api){
+        if (this.props.api) {
 
           dirs = [
             ...dirs,
@@ -334,7 +338,7 @@ module.exports = generator.Base.extend({
           ...node
         ];
 
-        if(this.props.mongo && !this.props.jwt){
+        if (this.props.mongo && !this.props.jwt) {
 
           dirs = [
             ...dirs,
@@ -344,7 +348,7 @@ module.exports = generator.Base.extend({
 
         }
 
-      }else{
+      } else {
 
         dirs = [
           ...dirs,
@@ -353,14 +357,14 @@ module.exports = generator.Base.extend({
 
       }
 
-      if(this.props.react){
+      if (this.props.react) {
 
         dirs = [
           ...dirs,
           ...react
         ];
 
-        if(this.props.redux){
+        if (this.props.redux) {
 
           dirs = [
             ...dirs,
@@ -371,7 +375,7 @@ module.exports = generator.Base.extend({
 
       }
 
-      if(this.props.jest){
+      if (this.props.jest) {
 
         dirs = [
           ...dirs,
@@ -384,7 +388,7 @@ module.exports = generator.Base.extend({
 
     },
 
-    settings(){
+    settings() {
 
       const eslint = [
         `.eslintignore`,
@@ -426,7 +430,7 @@ module.exports = generator.Base.extend({
         ...npm
       ];
 
-      if(this.props.node){
+      if (this.props.node) {
 
         const node = [
           `.env`,
@@ -446,19 +450,19 @@ module.exports = generator.Base.extend({
 
   },
 
-  install(){
+  install() {
 
     this._spawn(`git init`);
 
-    if(this.props.yarn) this._spawn(`yarn`);
+    if (this.props.yarn) this._spawn(`yarn`);
     else this._spawn(`npm install`);
 
     this._spawn(`git add .`);
     this._spawn(`git commit -m "initial commit"`);
 
-    if(this.props.heroku){
+    if (this.props.heroku) {
       this._spawn(`heroku create`);
-      if(this.props.yarn){
+      if (this.props.yarn) {
         this._spawn(`heroku buildbacks:set https://github.com/heroku/heroku-buildpack-nodejs#yarn`);
       }
     }
