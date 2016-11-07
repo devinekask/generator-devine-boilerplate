@@ -3,7 +3,9 @@ const Scopes = require(`../../modules/mongoose/const/Scopes`);
 const base = `/api`;
 
 module.exports = [
+
   {
+
     method: `GET`,
     path: `${base}/test`,
 
@@ -21,4 +23,5 @@ module.exports = [
     }
 
   }
+
 ];

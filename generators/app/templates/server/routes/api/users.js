@@ -10,6 +10,7 @@ const base = `/api`;
 module.exports = [
 
   {
+
     method: `POST`,
     path: `${base}/users`,
 
@@ -45,6 +46,7 @@ module.exports = [
         .catch(() => res(Boom.badRequest(`cannot save user`)));
 
     }
+
   }
 
 ];

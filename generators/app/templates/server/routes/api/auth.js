@@ -10,6 +10,7 @@ const base = `/api`;
 module.exports = [
 
   {
+
     method: `POST`,
     path: `${base}/auth`,
 
@@ -77,6 +78,7 @@ module.exports = [
       });
 
     }
+
   }
 
 ];
