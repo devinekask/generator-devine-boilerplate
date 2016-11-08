@@ -1,6 +1,6 @@
 {
   "name": "generator-devine-project",
-  "version": "3.1.0",
+  "version": "3.1.1",
   "description": "the one and only devine.be yeoman project generator",
   "license": "MIT",
   "main": "app/index.js",
