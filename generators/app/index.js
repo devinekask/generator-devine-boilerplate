@@ -148,7 +148,7 @@ module.exports = generator.Base.extend({
       type: `confirm`,
       name: `flow`,
       default: false,
-      message: `Do you need flow for type checking? (No)`
+      message: `need Flow (type checking)? (No)`
     }]).then(props => {
       this.props = Object.assign(this.props, props);
     });
@@ -304,19 +304,6 @@ module.exports = generator.Base.extend({
 
       }
 
-      if (this.props.flow) {
-
-        const flow = [
-          `.flowconfig`
-        ];
-
-        files = [
-          ...files,
-          ...flow
-        ];
-
-      }
-
       files.forEach(f => this._copyFile(f));
 
     },
@@ -469,12 +456,38 @@ module.exports = generator.Base.extend({
         ...editor
       ];
 
+      if (this.props.flow) {
+
+        const flow = [
+          `.flowconfig`
+        ];
+
+        files = [
+          ...files,
+          ...flow
+        ];
+
+      }
+
       if (this.props.node) {
 
         const node = [
           `.env`,
           `nodemon.json`,
         ];
+
+        if (this.props.heroku) {
+
+          const heroku = [
+            `.slugignore`
+          ];
+
+          files = [
+            ...files,
+            ...heroku
+          ];
+
+        }
 
         files = [
           ...files,
@@ -497,7 +510,7 @@ module.exports = generator.Base.extend({
     else this._spawn(`npm install`);
 
     this._spawn(`git add .`);
-    this._spawn(`git commit -m "initial"`);
+    spawn(`git`, [`commit`, `-m`, `':tada: initial commit'`], {stdio: `inherit`});
 
     if (this.props.heroku) {
       this._spawn(`heroku create`);
