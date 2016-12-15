@@ -86,13 +86,17 @@ module.exports = generator.Base.extend({
 
   },
 
+  _parseName(name) {
+    return name.split(` `).join(`-`);
+  },
+
   prompting() {
 
     return this.prompt([{
       type: `input`,
       name: `name`,
       message: `Your project name`,
-      default: this.appname
+      default: this._parseName(this.appname)
     }, {
       type: `confirm`,
       name: `react`,
