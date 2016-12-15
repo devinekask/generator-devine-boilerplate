@@ -10,13 +10,13 @@ Pick & choose from node.js (hapi), react, react-router, redux, MongoDB (mongoose
 ### Install Yo
 
 ```bash
-yarn global add yo
+npm i -g yo
 ```
 
 ### Install generator-devine-boilerplate
 
 ```bash
-yarn global add generator-devine-boilerplate
+npm i -g generator-devine-boilerplate
 ```
 
 ## Usage
