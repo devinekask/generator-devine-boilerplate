@@ -413,6 +413,20 @@ module.exports = generator.Base.extend({
 
       }
 
+      const src = [
+        `src/assets/img`,
+        `src/assets/fonts`,
+        `src/assets/svg`,
+        `src/assets/video`,
+        `src/assets/audio`,
+        `src/assets/data`
+      ];
+
+      dirs = [
+        ...dirs,
+        ...src
+      ];
+
       dirs.forEach(d => this._createDir(d));
 
     },
