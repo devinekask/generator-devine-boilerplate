@@ -7,7 +7,7 @@ import App from './containers/App';
   <% if (react) { %>render(
     <App />,
     document.querySelector(`.react-mount`)
-  );<% } else { %>console.log('Hello Boilerplate')<% } %>
+  );<% } else { %>console.log(`Hello, <%= name %>`)<% } %>
 
 };
 

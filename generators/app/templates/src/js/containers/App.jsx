@@ -6,7 +6,7 @@ import Home from '../pages/Home';<% } %>
 const App = () => {
   return (
     <% if(!reactRouter) { %><header>
-      <h1>Hello Boilerplate</h1>
+      <h1>Hello, <%= name %></h1>
     </header><% } else { %><Router>
       <main>
         <Match

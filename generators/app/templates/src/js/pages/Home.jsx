@@ -3,7 +3,7 @@ import React from 'react';
 const Home = () => {
   return (
     <header>
-      <h1>Hello Boilerplate</h1>
+      <h1>Hello, <%= name %></h1>
     </header>
   );
 };
