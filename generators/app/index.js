@@ -518,7 +518,7 @@ module.exports = generator.Base.extend({
     else this._spawn(`npm install`);
 
     this._spawn(`git add .`);
-    spawn(`git`, [`commit`, `-m`, `':tada: initial commit'`], {stdio: `inherit`});
+    spawn(`git`, [`commit`, `-m`, `:tada: initial commit`], {stdio: `inherit`});
 
     if (this.props.heroku) {
       this._spawn(`heroku create`);
