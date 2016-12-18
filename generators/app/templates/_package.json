@@ -69,7 +69,7 @@
     "stylelint": "^7.5.0",
     "stylelint-config-devine": "^1.0.0",
     "url-loader": "^0.5.7",
-    "webpack": "2.1.0-beta.28",
+    "webpack": "beta",
     "webpack-config-htmls": "^1.0.1"
   }
 }
