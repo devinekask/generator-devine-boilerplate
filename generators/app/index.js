@@ -60,6 +60,8 @@ module.exports = generator.Base.extend({
 
     this.props = {
 
+      wfloader: false,
+
       react: false,
       redux: false,
       reactRouter: false,
@@ -103,6 +105,11 @@ module.exports = generator.Base.extend({
       name: `name`,
       message: `Your project name`,
       default: this._parseName(this.appname)
+    }, {
+      type: `confirm`,
+      name: `wfloader`,
+      default: false,
+      message: `Do you need Web Font Loader? (No)`
     }, {
       type: `confirm`,
       name: `react`,
