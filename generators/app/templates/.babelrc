@@ -17,9 +17,13 @@
         "transform-react-jsx-source",
         "transform-react-stateless-component-name"
       ]
-    },
+    },<% } %>
 
-    <% } %>"production": {
+    <% if (jest) { %>"test": {
+      "presets": ["es2015"]
+    },<% } %>
+
+    "production": {
       "plugins": [
         "lodash"<% if (react) { %>,
         "transform-react-remove-prop-types"<% } %>
