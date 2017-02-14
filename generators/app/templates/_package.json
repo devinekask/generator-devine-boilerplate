@@ -61,7 +61,7 @@
     <% if (react) { %>"react": "^15.4.2",
     "react-dom": "^15.4.2",
     <% if (redux) { %>"redux": "^3.6.0",
-    <% } %><% if (reactRouter) { %>"react-router": "next",
+    <% } %><% if (reactRouter) { %>"react-router-dom": "next",
     <% } %><% } %><% if (!node) { %>"react-dev-utils": "^0.4.2",
     "webpack-dev-server": "beta",
     "local-web-server": "^1.2.6",

@@ -1,5 +1,5 @@
 import React from 'react';<% if(reactRouter) { %>
-import {Match, BrowserRouter as Router} from 'react-router';
+import {Route, BrowserRouter as Router} from 'react-router-dom';
 
 import Home from '../pages/Home';<% } %>
 
@@ -9,8 +9,8 @@ const App = () => {
       <h1>Hello, <%= name %></h1>
     </header><% } else { %><Router>
       <main>
-        <Match
-          exactly pattern='/'
+        <Route
+          exact path='/'
           component={Home}
         />
       </main>
