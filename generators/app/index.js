@@ -122,11 +122,15 @@ module.exports = generator.Base.extend({
       default: false,
       message: `with React-Router? (No)`
     }, {
-      when: r => r.react,
+      type: `confirm`,
+      name: `mobx`,
+      default: false,
+      message: `using MobX? (No)`
+    }, {
       type: `confirm`,
       name: `redux`,
       default: false,
-      message: `with Redux? (No)`
+      message: `using Redux? (No)`
     }, {
       type: `confirm`,
       name: `node`,

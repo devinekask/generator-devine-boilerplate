@@ -1,14 +1,15 @@
 {
 
   "presets": [
-    ["es2015", { "modules": false, "loose": true }],
-    "stage-0"<% if (react) { %>,
+    ["es2015", { "modules": false, "loose": true }]<% if (react) { %>,
     "react"<% } %>
   ],
 
-  <% if(flow) {%>"plugins": [
-    ["transform-flow-strip-types"]
-  ],<% } %>
+  "plugins": [
+    "transform-decorators-legacy",
+    "transform-class-properties"<% if(flow) {%>,
+    "transform-flow-strip-types"<% } %>
+  ],
 
   "env": {
 
