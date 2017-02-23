@@ -7,7 +7,8 @@
 
   "plugins": [
     "transform-decorators-legacy",
-    "transform-class-properties"<% if(flow) {%>,
+    "transform-class-properties",
+    "transform-object-rest-spread"<% if(flow) {%>,
     "transform-flow-strip-types"<% } %>
   ],
 
