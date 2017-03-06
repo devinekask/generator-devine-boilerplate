@@ -45,8 +45,8 @@
     "babel-plugin-transform-object-rest-spread": "^6.23.0",
     "copy-webpack-plugin": "^4.0.1",
     "css-loader": "^0.26.0",
-    "eslint": "^3.13.1",
-    "eslint-config-devine": "^1.6.1",
+    "eslint": "^3.17.0",
+    "eslint-config-devine": "^1.7.0",
     "eslint-loader": "^1.6.1",
     "extract-text-webpack-plugin": "^2.0.0",
     "file-loader": "^0.10.1",
@@ -75,6 +75,7 @@
     "stylelint-config-devine": "^1.1.0",
     "url-loader": "^0.5.7",
     "webpack": "^2.2.0",
-    "webpack-config-htmls": "^1.0.1"
+    "webpack-config-htmls": "^1.0.1",
+    "webpack-config-utils": "^2.3.0"
   }
 }
