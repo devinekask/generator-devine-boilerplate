@@ -30,8 +30,7 @@ const copy = new CopyWebpackPlugin([{
 const config = {
   <% if (!node) { %>
   // no HTML entry points for production build (bundled in JavaScript)<% } %>
-  entry: [<% if (!node) { %>
-    require.resolve(`react-dev-utils/webpackHotDevClient`),<% } %>
+  entry: [
     `./src/css/style.css`,
     `./src/js/script.js`
   ],
@@ -53,6 +52,10 @@ const config = {
     contentBase: `./src`,
     historyApiFallback: true, // for use with client side router
     hot: true,
+    overlay: {
+      errors: true,
+      warnings: true
+    },
     port
   },<% } %>
 
@@ -131,9 +134,6 @@ const config = {
 };
 
 if (process.env.NODE_ENV === `production`) {<% if (!node) { %>
-
-  //remove hot reloading client
-  config.entry.shift();
 
   //remove CSS rule and add new one, css in external file
   config.module.rules.shift();
