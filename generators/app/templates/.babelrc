@@ -1,7 +1,14 @@
 {
 
   "presets": [
-    ["es2015", { "modules": false, "loose": true }]<% if (react) { %>,
+    ["env", {
+      "targets": {
+        <% if(node) { %>"node": "current",<% } %>
+        "browsers": ["last 2 versions", "ie >= 10"]
+      },
+      "modules": false,
+      "loose": true
+      }]<% if (react) { %>,
     "react"<% } %>
   ],
 
@@ -22,7 +29,7 @@
     },<% } %>
 
     <% if (jest) { %>"test": {
-      "presets": ["es2015"]
+      "presets": ["env", targets: {"node": "current"}]
     },<% } %>
 
     "production": {
