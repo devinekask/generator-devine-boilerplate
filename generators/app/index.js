@@ -329,7 +329,9 @@ module.exports = generator.Base.extend({
 
     appDirs() {
 
-      let dirs = [];
+      let dirs = [
+        `src/js/lib`
+      ];
 
       const node = [
         `server/public`,
@@ -337,7 +339,7 @@ module.exports = generator.Base.extend({
       ];
 
       const noNode = [
-        `dist`
+        `dist`,
       ];
 
       const react = [

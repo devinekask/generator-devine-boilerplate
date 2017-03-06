@@ -1,14 +1,16 @@
 {
 
   "presets": [
-    ["env", {
-      "targets": {
-        <% if(node) { %>"node": "current",<% } %>
-        "browsers": ["last 2 versions", "ie >= 10"]
-      },
-      "modules": false,
-      "loose": true
-      }]<% if (react) { %>,
+    [
+      "env", {
+        "targets": {
+          <% if(node) { %>"node": "current",<% } %>
+          "browsers": ["last 2 versions", "ie >= 10"]
+        },
+        "modules": false,
+        "loose": true
+      }
+    ]<% if (react) { %>,
     "react"<% } %>
   ],
 
