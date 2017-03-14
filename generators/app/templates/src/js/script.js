@@ -2,12 +2,14 @@
 
 <% if(react) { %>import React from 'react';
 import {render} from 'react-dom';
-import App from './containers/App';
+import App from './containers/App';<% if(mobx) { %>
+
+import store from './store/';<% } %>
 
 <% } %>const init = () => {
 
   <% if (react) { %>render(
-    <App />,
+    <App <% if (mobx) { %>store={store}<% } %> />,
     document.querySelector(`.react-mount`)
   );<% } else { %>console.log(`Hello, <%= name %>`)<% } %>
 

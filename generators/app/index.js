@@ -122,11 +122,13 @@ module.exports = generator.Base.extend({
       default: false,
       message: `with React-Router? (No)`
     }, {
+      when: r => r.react && !r.redux,
       type: `confirm`,
       name: `mobx`,
       default: false,
       message: `using MobX? (No)`
     }, {
+      when: r => r.react && !r.mobx,
       type: `confirm`,
       name: `redux`,
       default: false,
@@ -208,7 +210,11 @@ module.exports = generator.Base.extend({
       ];
 
       const redux = [
-        `src/js/store/index.js`
+        {from: `src/js/store/redux_store.js`, to: `src/js/store/index.js`}
+      ];
+
+      const mobx = [
+        {from: `src/js/store/mobx_store.js`, to: `src/js/store/index.js`}
       ];
 
       const node = [
@@ -270,6 +276,15 @@ module.exports = generator.Base.extend({
           files = [
             ...files,
             ...redux
+          ];
+
+        }
+
+        if (this.props.mobx) {
+
+          files = [
+            ...files,
+            ...mobx
           ];
 
         }

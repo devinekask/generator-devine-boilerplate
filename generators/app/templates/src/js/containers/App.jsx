@@ -1,14 +1,22 @@
-import React from 'react';<% if(reactRouter) { %>
+import React from 'react';<% if(mobx) { %>
+
+import {PropTypes as MPropTypes, observer} from 'mobx-react';
+import DevTools from 'mobx-react-devtools';<% } %><% if(reactRouter) { %>
 import {Route, BrowserRouter as Router} from 'react-router-dom';
 
 import Home from './Home';<% } %>
 
-const App = () => {
+const App = (<% if (mobx) { %>{store}<% } %>) => {<% if (mobx) { %>
+
+  const {name} = store<% } %>
+
   return (
-    <section>
+    <section><% if (mobx) { %>
+
+      {process.env.NODE_ENV !== `production` ? <DevTools/> : null}<% } %>
 
       <header>
-        <h1>Hello, <%= name %></h1>
+        <h1>Hello, <% if (mobx) { %>{name}<% } else { %><%= name %><% } %></h1>
       </header><% if(reactRouter) { %>
 
       <Router>
@@ -22,6 +30,11 @@ const App = () => {
 
     </section>
   );
-};
 
-export default App;
+};<% if (mobx) { %>
+
+App.propTypes = {
+  store: MPropTypes.observableObject.isRequired
+};<% } %>
+
+export default <% if (mobx) { %>observer(<% } %>App<% if (mobx) { %>)<% } %>;
