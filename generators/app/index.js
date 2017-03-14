@@ -204,7 +204,7 @@ module.exports = generator.Base.extend({
       ];
 
       const reactRouter = [
-        `src/js/pages/Home.jsx`
+        `src/js/containers/Home.jsx`
       ];
 
       const redux = [
