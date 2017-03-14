@@ -62,7 +62,7 @@
     "postcss-will-change": "^1.1.0",
     <% if (react) { %>"react": "^15.4.2",
     "react-dom": "^15.4.2",<% if (reactRouter) { %>
-    "react-router-dom": "next",<% } %><% } %><% if (!node) { %>
+    "react-router-dom": "^4.0.0",<% } %><% } %><% if (!node) { %>
     "webpack-dev-server": "^2.4.1",
     "local-web-server": "^1.2.6",
     <% } %>"rimraf": "^2.5.4",
