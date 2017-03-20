@@ -65,6 +65,7 @@ module.exports = generator.Base.extend({
       react: false,
       redux: false,
       reactRouter: false,
+      mobx: false,
 
       node: false,
       mongo: false,
