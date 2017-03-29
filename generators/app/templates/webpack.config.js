@@ -152,7 +152,10 @@ const config = {
       ifProduction({
         test: /\.(svg|png|jpe?g|gif)$/,
         loader: `image-webpack-loader`,
-        enforce: `pre`
+        enforce: `pre`,
+        options: {
+          bypassOnDebug: true
+        }
       })
 
     ])
