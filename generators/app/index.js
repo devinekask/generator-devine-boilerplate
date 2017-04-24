@@ -242,6 +242,10 @@ module.exports = generator.Base.extend({
         `server/modules/mongoose/index.js`
       ];
 
+      const api = [
+        `server/lib/getFullUrl.js`
+      ];
+
       const jwt = [
 
         `server/modules/token/index.js`,
@@ -307,6 +311,11 @@ module.exports = generator.Base.extend({
           ];
 
           if (this.props.api) {
+
+            files = [
+              ...files,
+              ...api
+            ];
 
             if (this.props.jwt) {
 

@@ -3,7 +3,7 @@ const pluginHandler = require(`./lib/pluginHandler`);
 
 require(`dotenv`).load({silent: true});
 
-const {PORT: port} = process.env;
+const {PORT: port, URL} = process.env;
 
 const Server = require(`hapi`).Server;
 
@@ -24,5 +24,5 @@ server.register(require(`./routes/`), pluginHandler);
 
 server.start(err => {
   if (err) console.error(err);
-  console.log(`Server running at: http://localhost:${port}`);
+  console.log(`Server running at: ${URL}:${port}`);
 });

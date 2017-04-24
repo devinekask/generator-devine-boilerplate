@@ -2,22 +2,23 @@ const {User} = require(`mongoose`).models;
 
 const {pick, omit} = require(`lodash`);
 
+const getFullUrl = require(`../../lib/getFullUrl`);
 const Scopes = require(`../../modules/mongoose/const/Scopes`);
 
 const Joi = require(`joi`);
 const Boom = require(`boom`);
 
-const base = `/api`;
+const {API_BASE} = process.env;
+const route = `${API_BASE}/users`;
 
 module.exports = [
 
   {
 
     method: `POST`,
-    path: `${base}/users`,
+    path: `${route}`,
 
     config: {
-
 
       auth: {
         strategy: `token`,
@@ -55,9 +56,17 @@ module.exports = [
 
       user.save()
         .then(u => {
+
           if (!u) return res(Boom.badRequest(`cannot save user`));
+
           u = omit(u.toJSON(), [`__v`, `password`, `isActive`]);
-          return res(u);
+
+          return (
+            res(u)
+              .code(201) // CREATED
+              .header('Location', getFullUrl(`${route}/${u._id}`))
+          );
+
         })
         .catch(() => res(Boom.badRequest(`cannot save user`)));
 

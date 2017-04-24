@@ -5,14 +5,15 @@ const {omit} = require(`lodash`);
 const Joi = require(`joi`);
 const Boom = require(`boom`);
 
-const base = `/api`;
+const {API_BASE} = process.env;
+const route = `${API_BASE}/auth`;
 
 module.exports = [
 
   {
 
     method: `POST`,
-    path: `${base}/auth`,
+    path: `${route}`,
 
     config: {
 
