@@ -233,17 +233,16 @@ module.exports = generator.Base.extend({
       ];
 
       const api = [
-        `server/lib/getFullUrl.js`
+        `server/lib/getFullUrl.js`,
+        `server/routes/api/notFound.js`,
+        `server/routes/api/_example.js`
       ];
 
       const jwt = [
 
         `server/const/Scopes.js`,
         `server/schemas/User.js`,
-
-        `server/routes/api/_example.js`,
         `server/routes/api/auth.js`,
-        `server/routes/api/notFound.js`,
         `server/routes/api/users.js`
 
       ];

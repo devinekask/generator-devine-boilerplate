@@ -1,6 +1,6 @@
-const Scopes = require(`../../const/Scopes`);
+<% if(jwt) { %>const Scopes = require(`../../const/Scopes`);
 
-const {API_BASE} = process.env;
+<% } %>const {API_BASE} = process.env;
 const route = `${API_BASE}/test`;
 
 module.exports = [
@@ -8,7 +8,7 @@ module.exports = [
   {
 
     method: `GET`,
-    path: `${route}`,
+    path: `${route}`,<% if(jwt) { %>
 
     config: {
 
@@ -17,7 +17,7 @@ module.exports = [
         scope: [Scopes.USER]
       }
 
-    },
+    },<% } %>
 
     handler: (req, res) => {
       return res(`ok`);
