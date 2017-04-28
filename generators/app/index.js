@@ -220,12 +220,6 @@ module.exports = generator.Base.extend({
 
       const node = [
 
-        `server/lib/pluginHandler.js`,
-        `server/lib/isValidName.js`,
-
-        `server/modules/index.js`,
-        `server/routes/index.js`,
-
         `server/index.js`
 
       ];
@@ -238,20 +232,14 @@ module.exports = generator.Base.extend({
         `server/routes/static/public.js`
       ];
 
-      const mongo = [
-        `server/modules/mongoose/index.js`
-      ];
-
       const api = [
         `server/lib/getFullUrl.js`
       ];
 
       const jwt = [
 
-        `server/modules/token/index.js`,
-
-        `server/modules/mongoose/const/Scopes.js`,
-        `server/modules/mongoose/models/User.js`,
+        `server/const/Scopes.js`,
+        `server/schemas/User.js`,
 
         `server/routes/api/_example.js`,
         `server/routes/api/auth.js`,
@@ -305,11 +293,6 @@ module.exports = generator.Base.extend({
 
         if (this.props.mongo) {
 
-          files = [
-            ...files,
-            ...mongo
-          ];
-
           if (this.props.api) {
 
             files = [
@@ -360,7 +343,8 @@ module.exports = generator.Base.extend({
 
       const node = [
         `server/public`,
-        `server/uploads`
+        `server/uploads`,
+        `server/plugins`
       ];
 
       const noNode = [
@@ -382,7 +366,7 @@ module.exports = generator.Base.extend({
       ];
 
       const mongo = [
-        `server/modules/mongoose/models`
+        `server/schemas`
       ];
 
       const api = [

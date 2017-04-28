@@ -1,4 +1,4 @@
-const Scopes = require(`../../modules/mongoose/const/Scopes`);
+const Scopes = require(`../../const/Scopes`);
 
 const {API_BASE} = process.env;
 const route = `${API_BASE}/test`;

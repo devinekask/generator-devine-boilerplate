@@ -50,33 +50,30 @@ module.exports = [
         ]
       }).then(user => {
 
-
-        if (!user) {
-          return res(
-            Boom.badRequest(`user/password combination incorrect`)
-          );
-        }
+        if (!user) return res(
+          Boom.badRequest(`user/password combination incorrect`)
+        );
 
         user.verifyPassword(password, (err, isValid) => {
 
-          if (err || !isValid) {
-            return res(
-              Boom.badRequest(`user/password combination incorrect`)
-            );
-          }
+          if (err || !isValid) return res(
+            Boom.badRequest(`user/password combination incorrect`)
+          );
 
           const {_id: subject} = user;
-          user = omit(user.toJSON(), [`__v`, `password`, `isActive`, `_id`, `created`]);
+
+          user = omit(
+            user.toJSON(),
+            [`__v`, `password`, `isActive`, `_id`, `created`, `modified`]
+          );
 
           return res.token(user, {subject, audience});
 
         });
 
-      }).catch(() => {
-        return res(
-          Boom.badRequest(`error while authenticating user`)
-        );
-      });
+      }).catch(() => res(
+        Boom.badRequest(`error while authenticating user`)
+      ));
 
     }
 

@@ -3,7 +3,7 @@ const {User} = require(`mongoose`).models;
 const {pick, omit} = require(`lodash`);
 
 const getFullUrl = require(`../../lib/getFullUrl`);
-const Scopes = require(`../../modules/mongoose/const/Scopes`);
+const Scopes = require(`../../const/Scopes`);
 
 const Joi = require(`joi`);
 const Boom = require(`boom`);
@@ -57,18 +57,22 @@ module.exports = [
       user.save()
         .then(u => {
 
-          if (!u) return res(Boom.badRequest(`cannot save user`));
+          if (!u) return res(
+            Boom.badRequest(`cannot save user`)
+          );
 
           u = omit(u.toJSON(), [`__v`, `password`, `isActive`]);
 
           return (
             res(u)
               .code(201) // CREATED
-              .header('Location', getFullUrl(`${route}/${u._id}`))
+              .header(`location`, getFullUrl(`${route}/${u._id}`))
           );
 
         })
-        .catch(() => res(Boom.badRequest(`cannot save user`)));
+        .catch(() => res(
+          Boom.badRequest(`cannot save user`)
+        ));
 
     }
 
