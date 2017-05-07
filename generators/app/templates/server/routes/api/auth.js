@@ -71,8 +71,8 @@ module.exports = [
 
         });
 
-      }).catch(() => res(
-        Boom.badRequest(`error while authenticating user`)
+      }).catch(err => res(
+        Boom.badRequest(err.message)
       ));
 
     }
