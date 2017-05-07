@@ -33,7 +33,7 @@
   },<% } %>
   "devDependencies": {
     "babel-core": "^6.21.0",
-    "babel-loader": "^6.2.10",
+    "babel-loader": "^7.0.0",
     "babel-plugin-lodash": "^3.2.11",
     <% if(flow) { %>"babel-plugin-transform-flow-strip-types": "^6.21.0",<% } %>
     <% if (react) { %>"babel-plugin-transform-react-jsx-source": "^6.9.0",
@@ -55,7 +55,7 @@
     <% if (!node) { %>"lodash": "^4.17.4",
     <% } %>"html-loader": "^0.4.4",
     "image-webpack-loader": "^3.1.0",
-    <% if (jest) { %>"jest": "^19.0.2",
+    <% if (jest) { %>"jest": "^20.0.0",
     <% } %><% if (node) { %>"nodemon": "^1.11.0",
     <% } %>"postcss-cssnext": "^2.9.0",
     "postcss-loader": "^1.2.1",
