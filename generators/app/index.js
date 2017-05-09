@@ -233,7 +233,6 @@ module.exports = generator.Base.extend({
       ];
 
       const api = [
-        `server/lib/getFullUrl.js`,
         `server/routes/api/notFound.js`,
         `server/routes/api/_example.js`
       ];

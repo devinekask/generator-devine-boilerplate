@@ -25,6 +25,8 @@
     "hapi-devine-routes": "^1.0.0",
     "hapi": "^16.1.0"<% if (api) { %>,
     "http-client": "^4.3.1",
+    "hapi-devine-parse-query": "^1.0.0",
+    "hapi-devine-api-config": "^1.0.0",
     "isomorphic-fetch": "^2.2.1"<% } %>,
     "inert": "^4.1.0"<% if (mongo) { %>,
     "hapi-devine-mongodb": "^1.0.0"<% } %><% if (jwt) { %>,
