@@ -555,10 +555,7 @@ module.exports = generator.Base.extend({
     spawn(`git`, [`commit`, `-m`, `:tada: initial commit`], {stdio: `inherit`});
 
     if (this.props.heroku) {
-      this._spawn(`heroku create`);
-      if (this.props.yarn) {
-        this._spawn(`heroku buildpacks:set https://github.com/heroku/heroku-buildpack-nodejs#yarn`);
-      }
+      this._spawn(`heroku create --region eu`);
     }
 
     this._clearConsole();
