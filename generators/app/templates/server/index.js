@@ -3,7 +3,7 @@ const log = true;
 
 require(`dotenv`).load({silent: true});
 
-const {PORT = 3000, URL<% if(mongo) { %>, MONGO_URL<% } %><% if(jwt) { %>, SECRET<% } %>} = process.env;
+const {PORT = 3000, URL = `http://localhost`<% if(mongo) { %>, MONGO_URL<% } %><% if(jwt) { %>, SECRET<% } %>} = process.env;
 
 const Server = require(`hapi`).Server;
 
