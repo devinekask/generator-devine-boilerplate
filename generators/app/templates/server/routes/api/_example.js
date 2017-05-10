@@ -27,8 +27,9 @@ const Boom = require(`boom`);
 const {omit, pick} = require(`lodash`);
 
 const getFullUrl = suffix => {
-  const {URL, PORT, DEVELOPMENT} = process.env;
-  return `${URL}${DEVELOPMENT === `true` ? `:${PORT}` : ``}${suffix}`;
+  const {URL = `http://localhost`, PORT} = process.env;
+  const isDevelopment = (URL === `http://localhost`);
+  return `${URL}${isDevelopment ? `:${PORT}` : ``}${suffix}`;
 };
 
 const methods = {
