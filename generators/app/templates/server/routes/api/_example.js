@@ -128,7 +128,7 @@ const methods = {
 
     const payload = pick(req.payload, fields); // clean payload data
 
-    Model.update({_id}, payload, {upsert: true}) // automatically changes updated field
+    Model.update({_id}, payload) // automatically changes updated field
       .then(d => {
 
         if (d.ok) { // update success?
