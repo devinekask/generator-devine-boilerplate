@@ -13,6 +13,7 @@ const schema = {
   password: {
     type: String,
     required: true,
+    bcrypt: true,
     validation: Joi.string().min(3),
     project: false
   },
