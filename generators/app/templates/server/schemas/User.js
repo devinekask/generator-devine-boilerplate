@@ -8,21 +8,22 @@ const schema = {
     required: true,
     unique: true,
     validation: Joi.string().alphanum().min(3),
+    login: true
   },
 
   password: {
     type: String,
     required: true,
-    bcrypt: true,
     validation: Joi.string().min(3),
-    project: false
+    projection: false
   },
 
   email: {
     type: String,
     required: true,
     unique: true,
-    validation: Joi.string().email()
+    validation: Joi.string().email(),
+    login: true
   },
 
   scope: {
@@ -35,7 +36,5 @@ const schema = {
 
 module.exports = {
   schema,
-  plugins: [
-    require(`mongoose-bcrypt`)
-  ]
+  auth: true
 };

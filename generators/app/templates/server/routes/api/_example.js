@@ -36,7 +36,7 @@ const methods = {
 
   create: (req, res) => {
 
-    const payload = pick(req.payload, fields);
+    const payload = pick(req.payload, fields.input);
 
     // create new instance of model (with payload as data)
     const model = new Model(payload);
@@ -127,7 +127,7 @@ const methods = {
 
     const {_id} = req.params; // _id from route
 
-    const payload = pick(req.payload, fields); // clean payload data
+    const payload = pick(req.payload, fields.input); // clean payload data
 
     Model.update({_id}, payload) // automatically changes updated field
       .then(d => {

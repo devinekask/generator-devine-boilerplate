@@ -219,9 +219,7 @@ module.exports = generator.Base.extend({
       ];
 
       const node = [
-
         `server/index.js`
-
       ];
 
       const reactRouterNode = [
@@ -238,12 +236,8 @@ module.exports = generator.Base.extend({
       ];
 
       const jwt = [
-
         `server/const/Scopes.js`,
-        `server/schemas/User.js`,
-        `server/routes/api/auth.js`,
-        `server/routes/api/users.js`
-
+        `server/schemas/User.js`
       ];
 
       if (this.props.react) {

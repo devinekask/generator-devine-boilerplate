@@ -3,7 +3,12 @@ const log = true;
 
 require(`dotenv`).load({silent: true});
 
-const {PORT = 3000, URL = `http://localhost`<% if(mongo) { %>, MONGO_URL<% } %><% if(jwt) { %>, SECRET<% } %>} = process.env;
+const {
+  PORT = 3000,
+  URL = `http://localhost`<% if(mongo) { %>,
+  MONGO_URL<% } %><% if(jwt) { %>,
+  SECRET<% } %>
+} = process.env;
 
 const Server = require(`hapi`).Server;
 
@@ -36,10 +41,10 @@ server.start(err => {
       log,
 
       plugins: [<% if(mongo) { %>
-        require(`hapi-devine-mongodb`),<% } %>
-        require(`hapi-devine-routes`),<% if(jwt) { %>
-        require(`hapi-devine-auth`),<% } %>
-        require(`inert`)
+        `hapi-devine-mongodb`,<% } %>
+        `hapi-devine-routes`,<% if(jwt) { %>
+        `hapi-devine-auth`,<% } %>
+        `inert`
       ],
 
       pluginOptions: {<% if(mongo) { %>
@@ -52,12 +57,16 @@ server.start(err => {
 
         'hapi-devine-routes': {
           log,
-          path: path.join(__dirname, `routes`)
+          path: path.join(__dirname, `routes`),
+          after: <% if(jwt) { %>'hapi-devine-auth'<% } else { %>'hapi-devine-mongodb'<% } %>
         },<% if(jwt) { %>
 
         'hapi-devine-auth': {
+          log,
           issuer: URL,
-          secret: SECRET
+          secret: SECRET,
+          authModel: () => require(`mongoose`).models.User,
+          after: 'hapi-devine-mongodb'
         }<% } %>
 
       }
