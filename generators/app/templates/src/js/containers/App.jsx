@@ -1,40 +1,41 @@
 import React from 'react';<% if(mobx) { %>
+import {string} from 'prop-types';
 
-import {PropTypes as MPropTypes, observer} from 'mobx-react';
+import {inject, observer} from 'mobx-react';
 import DevTools from 'mobx-react-devtools';<% } %><% if(reactRouter) { %>
-import {Route, BrowserRouter as Router} from 'react-router-dom';
 
+import {Route} from 'react-router-dom';
 import Home from './Home';<% } %>
 
-const App = (<% if (mobx) { %>{store}<% } %>) => {<% if (mobx) { %>
+const App = (<% if (mobx) { %>{name}<% } %>) => (
 
-  const {name} = store<% } %>
+  <section><% if (mobx) { %>
 
-  return (
-    <section><% if (mobx) { %>
+    {process.env.NODE_ENV !== `production` ? <DevTools/> : null}<% } %>
 
-      {process.env.NODE_ENV !== `production` ? <DevTools/> : null}<% } %>
+    <header>
+      <h1>Hello, <% if (mobx) { %>{name}<% } else { %><%= name %><% } %></h1>
+    </header><% if(reactRouter) { %>
 
-      <header>
-        <h1>Hello, <% if (mobx) { %>{name}<% } else { %><%= name %><% } %></h1>
-      </header><% if(reactRouter) { %>
+    <section>
+      <Route
+        exact path='/'
+        component={Home}
+      />
+    </section><% } %>
 
-      <Router>
-        <section>
-          <Route
-            exact path='/'
-            component={Home}
-          />
-        </section>
-      </Router><% } %>
+  </section>
 
-    </section>
-  );
-
-};<% if (mobx) { %>
+);<% if (mobx) { %>
 
 App.propTypes = {
-  store: MPropTypes.observableObject.isRequired
+  name: string.isRequired
 };<% } %>
 
-export default <% if (mobx) { %>observer(<% } %>App<% if (mobx) { %>)<% } %>;
+export default <% if (mobx) { %>inject(
+  ({store}) => ({
+    name: store.name
+  })
+)(
+  observer(<% } %>App<% if (mobx) { %>)
+)<% } %>;

@@ -2,14 +2,23 @@
 
 import React from 'react';
 import {render} from 'react-dom';
-import App from './containers/App';<% if(mobx) { %>
 
-import store from './store/';<% } %>
+import App from './containers/App';<% if(reactRouter) { %>
 
-<% } %>const init = () => {
+import {BrowserRouter as Router, Route} from 'react-router-dom';<% } %><% if(mobx) { %>
 
-  <% if (react) { %>render(
-    <App <% if (mobx) { %>store={store}<% } %> />,
+import {Provider} from 'mobx-react';
+
+import stores from './stores';<% } %><% } %>
+
+const init = () => {
+
+  <% if (react) { %>render(<% if(mobx) { %>
+    <Provider {...stores}><% } %><% if(reactRouter) { %>
+      <Router><% } %>
+        <% if(reactRouter) { %><Route component={<% } else { %><<% } %>App<% if(reactRouter) { %>}<% } %> /><% if(reactRouter) { %>
+      </Router><% } %><% if(mobx) { %>
+    </Provider><% } %>,
     document.querySelector(`.react-mount`)
   );<% } else { %>console.log(`Hello, <%= name %>`)<% } %>
 

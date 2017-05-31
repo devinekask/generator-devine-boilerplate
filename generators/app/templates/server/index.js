@@ -58,7 +58,7 @@ server.start(err => {
         'hapi-devine-routes': {
           log,
           path: path.join(__dirname, `routes`),
-          after: <% if(jwt) { %>'hapi-devine-auth'<% } else { %>'hapi-devine-mongodb'<% } %>
+          after: <% if(jwt) { %>`hapi-devine-auth`<% } else { %>'hapi-devine-mongodb'<% } %>
         },<% if(jwt) { %>
 
         'hapi-devine-auth': {
@@ -66,7 +66,7 @@ server.start(err => {
           issuer: URL,
           secret: SECRET,
           authModel: () => require(`mongoose`).models.User,
-          after: 'hapi-devine-mongodb'
+          after: `hapi-devine-mongodb`
         }<% } %>
 
       }

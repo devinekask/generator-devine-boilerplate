@@ -211,11 +211,12 @@ module.exports = generator.Base.extend({
       ];
 
       const redux = [
-        {from: `src/js/store/redux_store.js`, to: `src/js/store/index.js`}
+        {from: `src/js/stores/redux_store.js`, to: `src/js/stores/index.js`}
       ];
 
       const mobx = [
-        {from: `src/js/store/mobx_store.js`, to: `src/js/store/index.js`}
+        {from: `src/js/stores/mobx_store.js`, to: `src/js/stores/store.js`},
+        {from: `src/js/stores/mobx_index.js`, to: `src/js/stores/index.js`}
       ];
 
       const node = [
