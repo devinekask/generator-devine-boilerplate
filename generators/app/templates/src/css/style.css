@@ -1,4 +1,9 @@
 @import 'reset';
+@import 'vars';
+
+html {
+  background-color: var(--bg-color);
+}
 
 body {
   font-family: <% if(wfloader) { %>Roboto<% } else { %>'Helvetica neue', Helvetica, Arial, sans-serif<% } %>;
